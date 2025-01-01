@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/a11y-code.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://11ty.dev/img/favicon.png">
+  <!-- add your favicons here -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png"> -->
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png"> -->
+  
+  <style>
+  	:root{--white:#fafafa;--black:#191919;--gray:#212121;--gray-2:#a6a6a6;--blue:#0070ff;--blue-2:#61dcff;--ff-sans-serif:Roboto,Helvetica,sans-serif;--ff-serif:Garamond,serif;--ff-code:monospace}*{box-sizing:border-box}body{--clr-background:var(--white);--clr-text:var(--black);--clr-text-secondary:var(--gray-2);--clr-link:var(--blue);--ff-current:var(--ff-sans-serif);background:var(--clr-background);color:var(--clr-text);font-family:var(--ff-current);padding:12px;line-height:1.5rem}body.dark{--clr-background:var(--black);--clr-text:var(--white);--clr-link:var(--blue-2)}.main-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 3fr 1fr;gap:3rem}main{min-height:86vh;padding-top:20px}.side-nav{text-align:end;line-height:2rem}.side-nav .site-title{all:unset}.side-nav .site-title:hover{all:unset;cursor:pointer}.side-nav a{all:unset;padding:8px;cursor:pointer}.side-nav a.active,.side-nav a:hover{background:var(--clr-text);color:var(--clr-background)}.side-nav ul{list-style:none}.side-nav ul li{margin:.5rem 0}.side-nav-inner{padding:20px;position:sticky;top:0}a{color:var(--clr-link)}.breadcrumbs{margin-bottom:1rem}article h1{font-size:2rem;line-height:2.5rem}article h1>a,article h2>a,article h3>a{color:var(--clr-text);text-decoration:none}article a:hover{color:var(--clr-link)}article img{max-width:100%}.thumbnail-container img{max-width:100%}.post-entries{padding:0;list-style:none}.post-entry{margin-bottom:4rem}.post-entry__title a{color:var(--clr-text)}.post-entry__title a:hover{color:var(--clr-link)}.post-entry__date{color:var(--clr-text-secondary)}.bibliography ul{padding:0;list-style:none}.bibliography li{padding-left:3rem;text-indent:-3rem;text-align:left;margin:1rem 0 .2rem 0}.main-footer{text-align:center;margin-top:4rem}.post-author{display:none}code{font-size:1.1em}pre{font-size:1em;overflow-x:auto;font-family:var(--ff-code);padding:12px;display:grid}pre code{overflow-x:auto}select{padding:2px;border:1px solid var(--clr-text);background-color:var(--clr-background);color:var(--clr-text);font-size:1em}button{padding:4px;border:1px solid var(--clr-text);color:var(--clr-text);background-color:transparent;cursor:pointer}.side-nav .controls{margin-top:2rem}@media (max-width:1200px){.main-container{grid-template-columns:1fr 3fr}}@media (max-width:720px){.main-container{grid-template-columns:1fr}}@media print{body.dark{--clr-background:#fff;--clr-text:#000;--clr-link:var(--blue)}.side-nav{display:none}.main-footer{display:none}.post-author{display:block}}
+  </style>
+  <meta property="og:title" content="Welcome to Academic Blog Template">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="Eleventy academic blog template">
+  <meta name="description" content="Eleventy academic blog template">
+  <meta name="theme-color" content="#0f0f11">
+  <title>Welcome to Academic Blog Template | Eleventy Academic Blog Template</title>
+</head>
+
+  <body>
+    <div class="main-container">
+      <aside class="side-nav">
+        <div class="side-nav-inner">
+          <a class="site-title" href="/">
+            Eleventy Academic Blog Template
+          </a>
+          <nav>
+  <ul><li>
+        <a
+          class="nav-link
+            
+               active 
+            
+          "
+          href="/"
+        > About</a>
+      </li><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/posts"
+        > Posts</a>
+      </li><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/feed.xml"
+        > RSS</a>
+      </li></ul>
+</nav>
+
+          <div class="controls">
+            <details>
+              <summary>Controls</summary>
+              <div>
+  <label for="theme">Theme</label>
+  <select name="theme" id="theme">
+    <option value="system">system</option>
+    <option value="light">light</option>
+    <option value="dark">dark</option>
+  </select>
+</div>
+
+              <div>
+  <label for="font">Font</label>
+  <select name="font" id="font">
+    <option value="sansSerif">sans-serif</option>
+    <option value="serif">serif</option>
+  </select>
+</div>
+
+              <div>
+                <button onclick="print()">Print this page</button>
+              </div>
+            </details>
+          </div>
+        </div>
+      </aside>
+      <main>
+        
+
+
+
+        
+
+<article>
+    <h1>Welcome to Academic Blog Template</h1>
+    <div class="post-author">
+      by
+      <strong>
+        
+          John Doe,
+        
+      </strong>
+    <span>Invalid DateTime</span>
+    </div>
+    <p>This is a template for academic blog. See the <a href="https://github.com/CondensedMilk7/eleventy-academic-template">GitHub Repository here</a>.</p>
+<p>It supports citations <span id="cite-1-0" class="citation">(Allport, 1935)</span>, powered by <a href="https://github.com/arothuis/markdown-it-biblatex">markdown-it-biblatex</a>,
+<a href="https://github.com/cmaas/markdown-it-table-of-contents">table of contents</a>,
+and LaTeX style math expressions with <a href="https://github.com/tani/markdown-it-mathjax3#readme">markdown-it-mathjax3</a>.</p>
+<p><mjx-container class="MathJax" jax="SVG" style="direction: ltr; position: relative;"><svg style="overflow: visible; min-height: 1px; min-width: 1px; vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="18.957ex" height="2.646ex" role="img" focusable="false" viewBox="0 -919.5 8378.9 1169.5" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msqrt"><g transform="translate(853,0)"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(500,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(1294.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(2294.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g></g><g data-mml-node="mo" transform="translate(0,59.5)"><path data-c="221A" d="M95 178Q89 178 81 186T72 200T103 230T169 280T207 309Q209 311 212 311H213Q219 311 227 294T281 177Q300 134 312 108L397 -77Q398 -77 501 136T707 565T814 786Q820 800 834 800Q841 800 846 794T853 782V776L620 293L385 -193Q381 -200 366 -200Q357 -200 354 -197Q352 -195 256 15L160 225L144 214Q129 202 113 190T95 178Z" style="stroke-width: 3;"/></g><rect width="2794.4" height="60" x="853" y="799.5"/></g><g data-mml-node="mo" transform="translate(3869.7,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(4869.9,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(5258.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" style="stroke-width: 3;"/></g><g data-mml-node="mo" transform="translate(5981.1,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z" style="stroke-width: 3;"/></g><g data-mml-node="mi" transform="translate(6981.3,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z" style="stroke-width: 3;"/></g><g data-mml-node="msup" transform="translate(7553.3,0)"><g data-mml-node="mo"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z" style="stroke-width: 3;"/></g><g data-mml-node="mn" transform="translate(422,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" style="stroke-width: 3;"/></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline" style="top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; position: absolute; padding: 1px 0px 0px 0px; border: 0px; display: block; width: auto; overflow: hidden;"><math xmlns="http://www.w3.org/1998/Math/MathML"><msqrt><mn>3</mn><mi>x</mi><mo>−</mo><mn>1</mn></msqrt><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>x</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></math></mjx-assistive-mml></mjx-container></p>
+<p>Who would need this? People who work in academic or educational fields
+and want to make their work available on the web.</p>
+<div class="bibliography">
+<h2 class="bibliography-title">References</h2>
+<ul class="bibliography-contents">
+  <li id="bib-1-1" class="csl-entry">Allport, G. W. (1935). Attitudes. In <i>A handbook of social psychology</i> (pp. 798–844). Worcester, MA, US: Clark University Press.</li>
+</ul>
+</div>
+
+</article>
+
+      </main>
+    </div>
+    <footer class="main-footer">
+  &copy; John Doe 2025
+</footer>
+
+  </body>
+  
+  <script>
+  function initThemeHandler(){const e=document.querySelector('select[id="theme"]'),t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",o=localStorage.getItem("theme"),n=document.querySelector('meta[name="theme-color"]'),a=getComputedStyle(document.body);function r(e){"dark"===e?document.body.classList.add("dark"):document.body.classList.remove("dark");const t=a.getPropertyValue("--clr-background");n.setAttribute("content",t)}e.value=o||"system",r("dark"===o||"light"===o?o:t),e.addEventListener("change",(()=>{"system"===e.value?r(t):r(e.value),localStorage.setItem("theme",e.value)}))}function initFontHandler(){const e=getComputedStyle(document.body),t=e.getPropertyValue("--ff-sans-serif"),o=e.getPropertyValue("--ff-serif"),n=localStorage.getItem("font"),a=document.querySelector('select[id="font"]');function r(e){document.body.style.fontFamily="serif"===e?o:t}"serif"===n&&(r(n),a.value=n),a.addEventListener("change",(()=>{r(a.value),localStorage.setItem("font",a.value)}))}initThemeHandler(),initFontHandler();
+  </script>
+</html>

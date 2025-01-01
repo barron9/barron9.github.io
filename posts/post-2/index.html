@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/a11y-code.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://11ty.dev/img/favicon.png">
+  <!-- add your favicons here -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png"> -->
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png"> -->
+  
+  <style>
+  	:root{--white:#fafafa;--black:#191919;--gray:#212121;--gray-2:#a6a6a6;--blue:#0070ff;--blue-2:#61dcff;--ff-sans-serif:Roboto,Helvetica,sans-serif;--ff-serif:Garamond,serif;--ff-code:monospace}*{box-sizing:border-box}body{--clr-background:var(--white);--clr-text:var(--black);--clr-text-secondary:var(--gray-2);--clr-link:var(--blue);--ff-current:var(--ff-sans-serif);background:var(--clr-background);color:var(--clr-text);font-family:var(--ff-current);padding:12px;line-height:1.5rem}body.dark{--clr-background:var(--black);--clr-text:var(--white);--clr-link:var(--blue-2)}.main-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 3fr 1fr;gap:3rem}main{min-height:86vh;padding-top:20px}.side-nav{text-align:end;line-height:2rem}.side-nav .site-title{all:unset}.side-nav .site-title:hover{all:unset;cursor:pointer}.side-nav a{all:unset;padding:8px;cursor:pointer}.side-nav a.active,.side-nav a:hover{background:var(--clr-text);color:var(--clr-background)}.side-nav ul{list-style:none}.side-nav ul li{margin:.5rem 0}.side-nav-inner{padding:20px;position:sticky;top:0}a{color:var(--clr-link)}.breadcrumbs{margin-bottom:1rem}article h1{font-size:2rem;line-height:2.5rem}article h1>a,article h2>a,article h3>a{color:var(--clr-text);text-decoration:none}article a:hover{color:var(--clr-link)}article img{max-width:100%}.thumbnail-container img{max-width:100%}.post-entries{padding:0;list-style:none}.post-entry{margin-bottom:4rem}.post-entry__title a{color:var(--clr-text)}.post-entry__title a:hover{color:var(--clr-link)}.post-entry__date{color:var(--clr-text-secondary)}.bibliography ul{padding:0;list-style:none}.bibliography li{padding-left:3rem;text-indent:-3rem;text-align:left;margin:1rem 0 .2rem 0}.main-footer{text-align:center;margin-top:4rem}.post-author{display:none}code{font-size:1.1em}pre{font-size:1em;overflow-x:auto;font-family:var(--ff-code);padding:12px;display:grid}pre code{overflow-x:auto}select{padding:2px;border:1px solid var(--clr-text);background-color:var(--clr-background);color:var(--clr-text);font-size:1em}button{padding:4px;border:1px solid var(--clr-text);color:var(--clr-text);background-color:transparent;cursor:pointer}.side-nav .controls{margin-top:2rem}@media (max-width:1200px){.main-container{grid-template-columns:1fr 3fr}}@media (max-width:720px){.main-container{grid-template-columns:1fr}}@media print{body.dark{--clr-background:#fff;--clr-text:#000;--clr-link:var(--blue)}.side-nav{display:none}.main-footer{display:none}.post-author{display:block}}
+  </style>
+  <meta property="og:title" content="Post 2">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1719051363209-b8c0cc108a94?q=80&amp;w=1932&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+  <meta property="og:description" content="This is a post 2">
+  <meta name="description" content="This is a post 2">
+  <meta name="theme-color" content="#0f0f11">
+  <title>Post 2 | Eleventy Academic Blog Template</title>
+</head>
+
+  <body>
+    <div class="main-container">
+      <aside class="side-nav">
+        <div class="side-nav-inner">
+          <a class="site-title" href="/">
+            Eleventy Academic Blog Template
+          </a>
+          <nav>
+  <ul><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/"
+        > About</a>
+      </li><li>
+        <a
+          class="nav-link
+            
+               active 
+            
+          "
+          href="/posts"
+        > Posts</a>
+      </li><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/feed.xml"
+        > RSS</a>
+      </li></ul>
+</nav>
+
+          <div class="controls">
+            <details>
+              <summary>Controls</summary>
+              <div>
+  <label for="theme">Theme</label>
+  <select name="theme" id="theme">
+    <option value="system">system</option>
+    <option value="light">light</option>
+    <option value="dark">dark</option>
+  </select>
+</div>
+
+              <div>
+  <label for="font">Font</label>
+  <select name="font" id="font">
+    <option value="sansSerif">sans-serif</option>
+    <option value="serif">serif</option>
+  </select>
+</div>
+
+              <div>
+                <button onclick="print()">Print this page</button>
+              </div>
+            </details>
+          </div>
+        </div>
+      </aside>
+      <main>
+        
+
+
+<nav class="breadcrumbs">
+  
+    <span><a href="/posts/">Posts</a></span>
+    
+      &gt;
+    
+  
+    <span><a href="/posts/post-2/">Post 2</a></span>
+    
+  
+</nav>
+
+
+        
+
+  <div class="thumbnail-container">
+      <img src="https://images.unsplash.com/photo-1719051363209-b8c0cc108a94?q=80&amp;w=1932&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Monochrome image of a building">
+  </div>
+
+<article>
+    <h1>Post 2</h1>
+    <div class="post-author">
+      by
+      <strong>
+        
+          John Doe,
+        
+      </strong>
+    <span>Jun 29, 2024</span>
+    </div>
+    <h2 id="vix-semper" tabindex="-1"><a class="header-anchor" href="#vix-semper">Vix semper</a></h2>
+<p>Lorem markdownum spicula picae? Per tum Esse clara, fixum prioribus Procne
+<em>viribus quam dixerat</em>, axes digitos. Vitale Cecropide <strong>corpore exhibuit</strong> quam
+in album, saeva alii; canis <a href="http://tota-dixit.io/receptis.aspx">cornua</a>, tu
+agitque, Circes noli. Tuli ora et vulnere imitamina furtiva vitiorum mandasset
+tempora in.</p>
+<ol>
+<li>Gelida audet spectarat conplexaque fronde corve</li>
+<li>Nec Occupat saxa non</li>
+<li>Subito montis marmoreo at quod erat aquosis</li>
+<li>Te Circen et carinas</li>
+</ol>
+<pre><code class="hljs language-ts"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">eleventyConfig</span>) {
+  eleventyConfig.<span class="hljs-title function_">addPassthroughCopy</span>(<span class="hljs-string">&quot;./src/styles&quot;</span>);
+  eleventyConfig.<span class="hljs-title function_">addPassthroughCopy</span>(<span class="hljs-string">&quot;./src/assets&quot;</span>);
+  eleventyConfig.<span class="hljs-title function_">addPassthroughCopy</span>(<span class="hljs-string">&quot;./src/scripts&quot;</span>);
+
+  eleventyConfig.<span class="hljs-title function_">addGlobalData</span>(<span class="hljs-string">&quot;globalData&quot;</span>, <span class="hljs-variable constant_">GLOBAL_DATA</span>);
+
+  eleventyConfig.<span class="hljs-title function_">addPlugin</span>(navigationPlugin);
+  eleventyConfig.<span class="hljs-title function_">addPlugin</span>(pluginRss);
+  eleventyConfig.<span class="hljs-title function_">addLiquidFilter</span>(<span class="hljs-string">&quot;dateToRfc3339&quot;</span>, pluginRss.<span class="hljs-property">dateToRfc3339</span>);
+
+  eleventyConfig.<span class="hljs-title function_">addFilter</span>(<span class="hljs-string">&quot;postDate&quot;</span>, <span class="hljs-function">(<span class="hljs-params">dateObj</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">DateTime</span>.<span class="hljs-title function_">fromJSDate</span>(dateObj).<span class="hljs-title function_">toLocaleString</span>(<span class="hljs-title class_">DateTime</span>.<span class="hljs-property">DATE_MED</span>);
+  });
+
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">dir</span>: {
+      <span class="hljs-attr">input</span>: <span class="hljs-string">&quot;src&quot;</span>,
+      <span class="hljs-attr">output</span>: <span class="hljs-string">&quot;public&quot;</span>,
+      <span class="hljs-attr">includes</span>: <span class="hljs-string">&quot;includes/partials&quot;</span>,
+      <span class="hljs-attr">layouts</span>: <span class="hljs-string">&quot;includes/layouts&quot;</span>,
+    },
+  };
+};
+</code></pre>
+<p>Non ora augendo <strong>tota Amor</strong> instructa <code>mora multis</code>, pestis. At Mavortis munera
+sinusque: patiar qui ea fata frondibus illis et ictus, et Erinyn demittite.
+Flava volanti, altaribus tua meas nunc recepta factorum de tibi vivis causam
+deque non lympha violentia coniuge. Semper per nemorumque <em>harena</em> vulnere
+moenia, est Luna iunctum hoc lumina minus.</p>
+<blockquote>
+<p>Coma qui quae dapes notavi Latous laeti secundi Fames. Illa terra abstinuit
+incidit referret Talia. Hecates infelix adempta miscentem relinquam auctoribus
+Medea eras mei illa, mea diriguit bellum facta inter benefacta. Cupiens
+mendacis quae nescio opus verba, intellectumque decerpta.</p>
+</blockquote>
+<h2 id="intrare-visu-phaethon-carebat-vidistis-a-rogat" tabindex="-1"><a class="header-anchor" href="#intrare-visu-phaethon-carebat-vidistis-a-rogat">Intrare visu Phaethon carebat vidistis a rogat</a></h2>
+<p>Armigerae quam, nutu naides nisi pallore, ratione simul venerat arce pisa
+latentis saturos reddunt. Nec nunc loqui Iovi caeso opto <strong>igitur lege</strong>
+nomenque carbasa si?</p>
+<ol>
+<li>Cuncta promptum accipimus factas dolet</li>
+<li>Pro aqua morsu</li>
+<li>Annos saetigerosque Cressa instabilemque demas</li>
+<li>Quietem nec ventos munera huic longos</li>
+<li>Erat fidem</li>
+</ol>
+<p>Parentis auras responsura Maeandri similis tenuit pulchros nec unde <em>Iris</em>
+Deucalioneas aura excipit? Sit tum rerum signaque relictae plus: relinquunt, ego
+decorem. Materiaque tellure invia; ne ecce domos, in Argosque non fiet alter.</p>
+<p>Putavi nec novum Byblis sic ursaque, oro est Ismario quod odit patulos dulcis
+teste tangendo. Mediis sit sine.</p>
+
+</article>
+
+      </main>
+    </div>
+    <footer class="main-footer">
+  &copy; John Doe 2025
+</footer>
+
+  </body>
+  
+  <script>
+  function initThemeHandler(){const e=document.querySelector('select[id="theme"]'),t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",o=localStorage.getItem("theme"),n=document.querySelector('meta[name="theme-color"]'),a=getComputedStyle(document.body);function r(e){"dark"===e?document.body.classList.add("dark"):document.body.classList.remove("dark");const t=a.getPropertyValue("--clr-background");n.setAttribute("content",t)}e.value=o||"system",r("dark"===o||"light"===o?o:t),e.addEventListener("change",(()=>{"system"===e.value?r(t):r(e.value),localStorage.setItem("theme",e.value)}))}function initFontHandler(){const e=getComputedStyle(document.body),t=e.getPropertyValue("--ff-sans-serif"),o=e.getPropertyValue("--ff-serif"),n=localStorage.getItem("font"),a=document.querySelector('select[id="font"]');function r(e){document.body.style.fontFamily="serif"===e?o:t}"serif"===n&&(r(n),a.value=n),a.addEventListener("change",(()=>{r(a.value),localStorage.setItem("font",a.value)}))}initThemeHandler(),initFontHandler();
+  </script>
+</html>
