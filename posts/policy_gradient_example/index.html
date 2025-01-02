@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/a11y-code.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://11ty.dev/img/favicon.png">
+  <!-- add your favicons here -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png"> -->
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png"> -->
+  
+  <style>
+  	:root{--white:#fafafa;--black:#191919;--gray:#212121;--gray-2:#a6a6a6;--blue:#0070ff;--blue-2:#61dcff;--ff-sans-serif:Roboto,Helvetica,sans-serif;--ff-serif:Garamond,serif;--ff-code:monospace}*{box-sizing:border-box}body{--clr-background:var(--white);--clr-text:var(--black);--clr-text-secondary:var(--gray-2);--clr-link:var(--blue);--ff-current:var(--ff-sans-serif);background:var(--clr-background);color:var(--clr-text);font-family:var(--ff-current);padding:12px;line-height:1.5rem}body.dark{--clr-background:var(--black);--clr-text:var(--white);--clr-link:var(--blue-2)}.main-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 3fr 1fr;gap:3rem}main{min-height:86vh;padding-top:20px}.side-nav{text-align:end;line-height:2rem}.side-nav .site-title{all:unset}.side-nav .site-title:hover{all:unset;cursor:pointer}.side-nav a{all:unset;padding:8px;cursor:pointer}.side-nav a.active,.side-nav a:hover{background:var(--clr-text);color:var(--clr-background)}.side-nav ul{list-style:none}.side-nav ul li{margin:.5rem 0}.side-nav-inner{padding:20px;position:sticky;top:0}a{color:var(--clr-link)}.breadcrumbs{margin-bottom:1rem}article h1{font-size:2rem;line-height:2.5rem}article h1>a,article h2>a,article h3>a{color:var(--clr-text);text-decoration:none}article a:hover{color:var(--clr-link)}article img{max-width:100%}.thumbnail-container img{max-width:100%}.post-entries{padding:0;list-style:none}.post-entry{margin-bottom:4rem}.post-entry__title a{color:var(--clr-text)}.post-entry__title a:hover{color:var(--clr-link)}.post-entry__date{color:var(--clr-text-secondary)}.bibliography ul{padding:0;list-style:none}.bibliography li{padding-left:3rem;text-indent:-3rem;text-align:left;margin:1rem 0 .2rem 0}.main-footer{text-align:center;margin-top:4rem}.post-author{display:none}code{font-size:1.1em}pre{font-size:1em;overflow-x:auto;font-family:var(--ff-code);padding:12px;display:grid}pre code{overflow-x:auto}select{padding:2px;border:1px solid var(--clr-text);background-color:var(--clr-background);color:var(--clr-text);font-size:1em}button{padding:4px;border:1px solid var(--clr-text);color:var(--clr-text);background-color:transparent;cursor:pointer}.side-nav .controls{margin-top:2rem}@media (max-width:1200px){.main-container{grid-template-columns:1fr 3fr}}@media (max-width:720px){.main-container{grid-template-columns:1fr}}@media print{body.dark{--clr-background:#fff;--clr-text:#000;--clr-link:var(--blue)}.side-nav{display:none}.main-footer{display:none}.post-author{display:block}}
+  </style>
+  <meta property="og:title" content="Vanilla Policy Gradient example">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="An example of how you can implement **Vanilla Policy Gradient ** in Python using **PyTorch**. The following code is for a simple environment (like CartPole from OpenAI&#39;s Gym) and uses the REINFORCE algorithm for the policy gradient method.">
+  <meta name="description" content="An example of how you can implement **Vanilla Policy Gradient ** in Python using **PyTorch**. The following code is for a simple environment (like CartPole from OpenAI&#39;s Gym) and uses the REINFORCE algorithm for the policy gradient method.">
+  <meta name="theme-color" content="#0f0f11">
+  <title>Vanilla Policy Gradient example | 0v3r.com</title>
+</head>
+
+  <body>
+    <div class="main-container">
+      <aside class="side-nav">
+        <div class="side-nav-inner">
+          <a class="site-title" href="/">
+            0v3r.com
+          </a>
+          <nav>
+  <ul><li>
+        <a
+          class="nav-link
+            
+               active 
+            
+          "
+          href="/posts"
+        > /posts 
+    (3)
+  
+   </a>
+      </li><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/feed.xml"
+        > /feed.xml 
+   </a>
+      </li></ul>
+</nav>
+
+          <div class="controls">
+            <details>
+              <summary>Controls</summary>
+              <div>
+  <label for="theme">Theme</label>
+  <select name="theme" id="theme">
+    <option value="system">system</option>
+    <option value="light">light</option>
+    <option value="dark">dark</option>
+  </select>
+</div>
+
+              <div>
+  <label for="font">Font</label>
+  <select name="font" id="font">
+    <option value="sansSerif">sans-serif</option>
+    <option value="serif">serif</option>
+  </select>
+</div>
+
+              <div>
+                <button onclick="print()">Print this page</button>
+              </div>
+            </details>
+          </div>
+        </div>
+      </aside>
+      <main>
+        
+
+
+<nav class="breadcrumbs">
+  
+    <span><a href="/posts/">Posts</a></span>
+    
+      &gt;
+    
+  
+    <span><a href="/posts/policy_gradient_example/">po_gr_methods</a></span>
+    
+  
+</nav>
+
+
+        
+
+<article>
+    <h1>Vanilla Policy Gradient example</h1>
+    <div class="post-author">
+      by
+      <strong>
+        
+          chat.,
+        
+      </strong>
+    <span>Jan 2, 2025</span>
+    </div>
+    <p>An example of how you can implement **Vanilla Policy Gradient ** in Python using <strong>PyTorch</strong>. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.</p>
+<h3 id="install-dependencies" tabindex="-1"><a class="header-anchor" href="#install-dependencies">Install Dependencies</a></h3>
+<p>Make sure you have the necessary libraries installed. You can install them using:</p>
+<pre><code class="hljs language-bash">pip install gym torch numpy
+</code></pre>
+<h3 id="vanilla-policy-gradient-code-%5Bupdated%5D" tabindex="-1"><a class="header-anchor" href="#vanilla-policy-gradient-code-%5Bupdated%5D">Vanilla Policy Gradient Code [updated]</a></h3>
+<pre><code class="hljs language-python"><span class="hljs-keyword">import</span> gym
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> tqdm <span class="hljs-keyword">import</span> tqdm, trange
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">from</span> torch.autograd <span class="hljs-keyword">import</span> Variable
+<span class="hljs-keyword">from</span> torch.distributions <span class="hljs-keyword">import</span> Categorical
+
+
+env = gym.make(<span class="hljs-string">&#x27;CartPole-v1&#x27;</span>)
+<span class="hljs-comment">#env.seed(1); </span>
+torch.manual_seed(<span class="hljs-number">1</span>);
+
+<span class="hljs-comment">#Hyperparameters</span>
+learning_rate = <span class="hljs-number">0.01</span>
+gamma = <span class="hljs-number">0.99</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Policy</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(Policy, self).__init__()
+        self.state_space = env.observation_space.shape[<span class="hljs-number">0</span>]
+        self.action_space = env.action_space.n
+        
+        self.l1 = nn.Linear(self.state_space, <span class="hljs-number">128</span>, bias=<span class="hljs-literal">False</span>)
+        self.l2 = nn.Linear(<span class="hljs-number">128</span>, self.action_space, bias=<span class="hljs-literal">False</span>)
+        
+        self.gamma = gamma
+        
+        <span class="hljs-comment"># Episode policy and reward history </span>
+        self.policy_history = Variable(torch.Tensor()) 
+        self.reward_episode = []
+        <span class="hljs-comment"># Overall reward and loss history</span>
+        self.reward_history = []
+        self.loss_history = []
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):    
+        model = torch.nn.Sequential(
+            self.l1,
+            nn.Dropout(p=<span class="hljs-number">0.6</span>),
+            nn.ReLU(),
+            self.l2,
+            nn.Softmax(dim=-<span class="hljs-number">1</span>)
+        )
+        <span class="hljs-keyword">return</span> model(x)
+
+policy = Policy()
+optimizer = optim.Adam(policy.parameters(), lr=learning_rate)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">select_action</span>(<span class="hljs-params">state</span>):
+    <span class="hljs-comment">#Select an action (0 or 1) by running policy model and choosing based on the probabilities in state</span>
+    state = torch.from_numpy(state).<span class="hljs-built_in">type</span>(torch.FloatTensor)
+    state = policy(Variable(state))
+    c = Categorical(state)
+    action = c.sample()
+    
+    <span class="hljs-comment"># Add log probability of our chosen action to our history    </span>
+    <span class="hljs-keyword">if</span> policy.policy_history.dim() != <span class="hljs-number">0</span>:
+        policy.policy_history = torch.cat([policy.policy_history, c.log_prob(action).unsqueeze(<span class="hljs-number">0</span>)])
+    <span class="hljs-keyword">else</span>:
+        policy.policy_history = (c.log_prob(action))
+    <span class="hljs-keyword">return</span> action
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">update_policy</span>():
+    R = <span class="hljs-number">0</span>
+    rewards = []
+    
+    <span class="hljs-comment"># Discount future rewards back to the present using gamma</span>
+    <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> policy.reward_episode[::-<span class="hljs-number">1</span>]:
+        R = r + policy.gamma * R
+        rewards.insert(<span class="hljs-number">0</span>,R)
+        
+    <span class="hljs-comment"># Scale rewards</span>
+    rewards = torch.FloatTensor(rewards)
+    rewards = (rewards - rewards.mean()) / (rewards.std() + np.finfo(np.float32).eps)
+    
+    <span class="hljs-comment"># Calculate loss</span>
+    loss = (torch.<span class="hljs-built_in">sum</span>(torch.mul(policy.policy_history, Variable(rewards)).mul(-<span class="hljs-number">1</span>), -<span class="hljs-number">1</span>))
+    
+    <span class="hljs-comment"># Update network weights</span>
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
+    <span class="hljs-comment">#Save and intialize episode history counters</span>
+    policy.loss_history.append(loss.item())
+    policy.reward_history.append(np.<span class="hljs-built_in">sum</span>(policy.reward_episode))
+    policy.policy_history = Variable(torch.Tensor())
+    policy.reward_episode= []
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>(<span class="hljs-params">episodes</span>):
+    running_reward = <span class="hljs-number">10</span>
+    <span class="hljs-keyword">for</span> episode <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(episodes):
+        state,_ = env.reset() <span class="hljs-comment"># Reset environment and record the starting state</span>
+        done = <span class="hljs-literal">False</span>       
+    
+        <span class="hljs-keyword">for</span> time <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):
+            action = select_action(state)
+            <span class="hljs-comment"># Step through environment using chosen action</span>
+            state, reward, done, _, _ = env.step(action.item())
+
+            <span class="hljs-comment"># Save reward</span>
+            policy.reward_episode.append(reward)
+            <span class="hljs-keyword">if</span> done:
+                <span class="hljs-keyword">break</span>
+        
+        <span class="hljs-comment"># Used to determine when the environment is solved.</span>
+        running_reward = (running_reward * <span class="hljs-number">0.99</span>) + (time * <span class="hljs-number">0.01</span>)
+
+        update_policy()
+
+        <span class="hljs-keyword">if</span> episode % <span class="hljs-number">50</span> == <span class="hljs-number">0</span>:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Episode {}\tLast length: {:5d}\tAverage length: {:.2f}&#x27;</span>.<span class="hljs-built_in">format</span>(episode, time, running_reward))
+
+        <span class="hljs-keyword">if</span> running_reward &gt; env.spec.reward_threshold:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Solved! Running reward is now {} and the last episode runs to {} time steps!&quot;</span>.<span class="hljs-built_in">format</span>(running_reward, time))
+            <span class="hljs-keyword">break</span>
+
+episodes = <span class="hljs-number">1000</span>
+main(episodes)
+
+
+window = <span class="hljs-built_in">int</span>(episodes/<span class="hljs-number">20</span>)
+
+fig, ((ax1), (ax2)) = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, sharey=<span class="hljs-literal">True</span>, figsize=[<span class="hljs-number">9</span>,<span class="hljs-number">9</span>]);
+rolling_mean = pd.Series(policy.reward_history).rolling(window).mean()
+std = pd.Series(policy.reward_history).rolling(window).std()
+ax1.plot(rolling_mean)
+ax1.fill_between(<span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(policy.reward_history)),rolling_mean-std, rolling_mean+std, color=<span class="hljs-string">&#x27;orange&#x27;</span>, alpha=<span class="hljs-number">0.2</span>)
+ax1.set_title(<span class="hljs-string">&#x27;Episode Length Moving Average ({}-episode window)&#x27;</span>.<span class="hljs-built_in">format</span>(window))
+ax1.set_xlabel(<span class="hljs-string">&#x27;Episode&#x27;</span>); ax1.set_ylabel(<span class="hljs-string">&#x27;Episode Length&#x27;</span>)
+
+ax2.plot(policy.reward_history)
+ax2.set_title(<span class="hljs-string">&#x27;Episode Length&#x27;</span>)
+ax2.set_xlabel(<span class="hljs-string">&#x27;Episode&#x27;</span>); ax2.set_ylabel(<span class="hljs-string">&#x27;Episode Length&#x27;</span>)
+
+fig.tight_layout(pad=<span class="hljs-number">2</span>)
+plt.show()
+<span class="hljs-comment">#fig.savefig(&#x27;results.png&#x27;)</span>
+</code></pre>
+<h3 id="explanation%3A" tabindex="-1"><a class="header-anchor" href="#explanation%3A">Explanation:</a></h3>
+<ol>
+<li>
+<p><strong>Policy Network</strong>:</p>
+<ul>
+<li>The <code>PolicyNetwork</code> class defines a simple feedforward neural network with two layers. The input size is 4 (for the state space of CartPole) and the output size is 2 (for the two actions: left and right).</li>
+<li>The output of the network is passed through a softmax function to obtain a probability distribution over the actions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Action Selection</strong>:</p>
+<ul>
+<li>The <code>select_action</code> function takes a state, computes the policy probabilities, and samples an action according to these probabilities. The <code>Categorical</code> distribution is used to sample actions based on the probabilities.</li>
+</ul>
+</li>
+<li>
+<p><strong>Discounted Rewards</strong>:</p>
+<ul>
+<li>The <code>compute_discounted_rewards</code> function calculates the discounted rewards using the formula:
+[
+G_t = R_t + \gamma G_{t+1}
+]
+where ( \gamma ) is the discount factor. It ensures that future rewards are appropriately discounted.</li>
+</ul>
+</li>
+<li>
+<p><strong>Training Loop</strong>:</p>
+<ul>
+<li>For each episode, the agent interacts with the environment and collects actions and rewards.</li>
+<li>After the episode, the code computes the discounted rewards and normalizes them to reduce variance.</li>
+<li>The policy loss is computed as the negative log probability of the chosen actions, weighted by the discounted rewards.</li>
+<li>The optimizer updates the policy network’s weights by performing gradient descent.</li>
+</ul>
+</li>
+<li>
+<p><strong>Testing</strong>:</p>
+<ul>
+<li>After training, the agent is tested by running a few episodes and calculating the total reward obtained by following the learned policy.</li>
+</ul>
+</li>
+</ol>
+<h3 id="notes%3A" tabindex="-1"><a class="header-anchor" href="#notes%3A">Notes:</a></h3>
+<ul>
+<li><strong>Exploration vs Exploitation</strong>: This implementation uses pure policy gradient without any explicit exploration strategy (like epsilon-greedy or entropy regularization). In practice, adding some exploration (e.g., via entropy or noise) can improve learning.</li>
+<li><strong>Stability</strong>: This simple implementation may not perform as well as more advanced methods like TRPO or PPO. It may also experience high variance in the rewards, which can be addressed by adding a baseline (such as a value function) or using other techniques like generalized advantage estimation (GAE).</li>
+</ul>
+<p>This code provides a basic structure of Vanilla Policy Gradient (REINFORCE) and can be expanded to handle more complex environments or added with more sophisticated optimizations.</p>
+
+</article>
+
+      </main>
+    </div>
+    <footer class="main-footer">
+  &copy; b 2025
+</footer>
+
+  </body>
+  
+  <script>
+  function initThemeHandler(){const e=document.querySelector('select[id="theme"]'),t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",o=localStorage.getItem("theme"),n=document.querySelector('meta[name="theme-color"]'),a=getComputedStyle(document.body);function r(e){"dark"===e?document.body.classList.add("dark"):document.body.classList.remove("dark");const t=a.getPropertyValue("--clr-background");n.setAttribute("content",t)}e.value=o||"system",r("dark"===o||"light"===o?o:t),e.addEventListener("change",(()=>{"system"===e.value?r(t):r(e.value),localStorage.setItem("theme",e.value)}))}function initFontHandler(){const e=getComputedStyle(document.body),t=e.getPropertyValue("--ff-sans-serif"),o=e.getPropertyValue("--ff-serif"),n=localStorage.getItem("font"),a=document.querySelector('select[id="font"]');function r(e){document.body.style.fontFamily="serif"===e?o:t}"serif"===n&&(r(n),a.value=n),a.addEventListener("change",(()=>{r(a.value),localStorage.setItem("font",a.value)}))}initThemeHandler(),initFontHandler();
+  </script>
+</html>

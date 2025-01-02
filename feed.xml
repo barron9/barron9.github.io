@@ -4,7 +4,7 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-02T14:41:27Z</updated>
+	<updated>2025-01-02T14:59:23Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
@@ -12,16 +12,16 @@
 	</author>
 	
 	<entry>
-		<title>Vanilla Policy Gradient (VPG) example</title>
-		<link href="https://0v3r.com/posts/vpg_example/"/>
+		<title>Vanilla Policy Gradient example</title>
+		<link href="https://0v3r.com/posts/policy_gradient_example/"/>
 		<updated>2025-01-02T00:00:00Z</updated>
-		<id>https://0v3r.com/posts/vpg_example/</id>
-		<content type="html">&lt;p&gt;An example of how you can implement &lt;strong&gt;Vanilla Policy Gradient (VPG)&lt;/strong&gt; in Python using &lt;strong&gt;PyTorch&lt;/strong&gt;. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.&lt;/p&gt;
-&lt;h3 id=&quot;install-dependencies&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#install-dependencies&quot;&gt;Install Dependencies&lt;/a&gt;&lt;/h3&gt;
+		<id>https://0v3r.com/posts/policy_gradient_example/</id>
+		<content type="html">&lt;p&gt;An example of how you can implement **Vanilla Policy Gradient ** in Python using &lt;strong&gt;PyTorch&lt;/strong&gt;. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.&lt;/p&gt;
+&lt;h3 id=&quot;install-dependencies&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/policy_gradient_example/#install-dependencies&quot;&gt;Install Dependencies&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Make sure you have the necessary libraries installed. You can install them using:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs language-bash&quot;&gt;pip install gym torch numpy
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;vanilla-policy-gradient-code-%5Bupdated%5D&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#vanilla-policy-gradient-code-%5Bupdated%5D&quot;&gt;Vanilla Policy Gradient Code [updated]&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;vanilla-policy-gradient-code-%5Bupdated%5D&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/policy_gradient_example/#vanilla-policy-gradient-code-%5Bupdated%5D&quot;&gt;Vanilla Policy Gradient Code [updated]&lt;/a&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs language-python&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; gym
 &lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; numpy &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; np
 &lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; plt
@@ -165,7 +165,7 @@ fig.tight_layout(pad=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
 plt.show()
 &lt;span class=&quot;hljs-comment&quot;&gt;#fig.savefig(&amp;#x27;results.png&amp;#x27;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;explanation%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#explanation%3A&quot;&gt;Explanation:&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;explanation%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/policy_gradient_example/#explanation%3A&quot;&gt;Explanation:&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Policy Network&lt;/strong&gt;:&lt;/p&gt;
@@ -206,7 +206,7 @@ where ( &#92;gamma ) is the discount factor. It ensures that future rewards are 
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;notes%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#notes%3A&quot;&gt;Notes:&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;notes%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/policy_gradient_example/#notes%3A&quot;&gt;Notes:&lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Exploration vs Exploitation&lt;/strong&gt;: This implementation uses pure policy gradient without any explicit exploration strategy (like epsilon-greedy or entropy regularization). In practice, adding some exploration (e.g., via entropy or noise) can improve learning.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Stability&lt;/strong&gt;: This simple implementation may not perform as well as more advanced methods like TRPO or PPO. It may also experience high variance in the rewards, which can be addressed by adding a baseline (such as a value function) or using other techniques like generalized advantage estimation (GAE).&lt;/li&gt;
