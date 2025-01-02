@@ -4,12 +4,216 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-02T12:23:34Z</updated>
+	<updated>2025-01-02T14:41:27Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
 		<email>b@0v3r.com</email>
 	</author>
+	
+	<entry>
+		<title>Vanilla Policy Gradient (VPG) example</title>
+		<link href="https://0v3r.com/posts/vpg_example/"/>
+		<updated>2025-01-02T00:00:00Z</updated>
+		<id>https://0v3r.com/posts/vpg_example/</id>
+		<content type="html">&lt;p&gt;An example of how you can implement &lt;strong&gt;Vanilla Policy Gradient (VPG)&lt;/strong&gt; in Python using &lt;strong&gt;PyTorch&lt;/strong&gt;. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.&lt;/p&gt;
+&lt;h3 id=&quot;install-dependencies&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#install-dependencies&quot;&gt;Install Dependencies&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Make sure you have the necessary libraries installed. You can install them using:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs language-bash&quot;&gt;pip install gym torch numpy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;vanilla-policy-gradient-code-%5Bupdated%5D&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#vanilla-policy-gradient-code-%5Bupdated%5D&quot;&gt;Vanilla Policy Gradient Code [updated]&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs language-python&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; gym
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; numpy &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; np
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; plt
+&lt;span class=&quot;hljs-keyword&quot;&gt;from&lt;/span&gt; tqdm &lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; tqdm, trange
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; pandas &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; pd
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; torch
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; torch.nn &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; nn
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; torch.optim &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; optim
+&lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; torch.nn.functional &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; F
+&lt;span class=&quot;hljs-keyword&quot;&gt;from&lt;/span&gt; torch.autograd &lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; Variable
+&lt;span class=&quot;hljs-keyword&quot;&gt;from&lt;/span&gt; torch.distributions &lt;span class=&quot;hljs-keyword&quot;&gt;import&lt;/span&gt; Categorical
+
+
+env = gym.make(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;CartPole-v1&amp;#x27;&lt;/span&gt;)
+&lt;span class=&quot;hljs-comment&quot;&gt;#env.seed(1); &lt;/span&gt;
+torch.manual_seed(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+
+&lt;span class=&quot;hljs-comment&quot;&gt;#Hyperparameters&lt;/span&gt;
+learning_rate = &lt;span class=&quot;hljs-number&quot;&gt;0.01&lt;/span&gt;
+gamma = &lt;span class=&quot;hljs-number&quot;&gt;0.99&lt;/span&gt;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Policy&lt;/span&gt;(nn.Module):
+    &lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;__init__&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;self&lt;/span&gt;):
+        &lt;span class=&quot;hljs-built_in&quot;&gt;super&lt;/span&gt;(Policy, self).__init__()
+        self.state_space = env.observation_space.shape[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;]
+        self.action_space = env.action_space.n
+        
+        self.l1 = nn.Linear(self.state_space, &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, bias=&lt;span class=&quot;hljs-literal&quot;&gt;False&lt;/span&gt;)
+        self.l2 = nn.Linear(&lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;, self.action_space, bias=&lt;span class=&quot;hljs-literal&quot;&gt;False&lt;/span&gt;)
+        
+        self.gamma = gamma
+        
+        &lt;span class=&quot;hljs-comment&quot;&gt;# Episode policy and reward history &lt;/span&gt;
+        self.policy_history = Variable(torch.Tensor()) 
+        self.reward_episode = []
+        &lt;span class=&quot;hljs-comment&quot;&gt;# Overall reward and loss history&lt;/span&gt;
+        self.reward_history = []
+        self.loss_history = []
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;forward&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;self, x&lt;/span&gt;):    
+        model = torch.nn.Sequential(
+            self.l1,
+            nn.Dropout(p=&lt;span class=&quot;hljs-number&quot;&gt;0.6&lt;/span&gt;),
+            nn.ReLU(),
+            self.l2,
+            nn.Softmax(dim=-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
+        )
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; model(x)
+
+policy = Policy()
+optimizer = optim.Adam(policy.parameters(), lr=learning_rate)
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;select_action&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;state&lt;/span&gt;):
+    &lt;span class=&quot;hljs-comment&quot;&gt;#Select an action (0 or 1) by running policy model and choosing based on the probabilities in state&lt;/span&gt;
+    state = torch.from_numpy(state).&lt;span class=&quot;hljs-built_in&quot;&gt;type&lt;/span&gt;(torch.FloatTensor)
+    state = policy(Variable(state))
+    c = Categorical(state)
+    action = c.sample()
+    
+    &lt;span class=&quot;hljs-comment&quot;&gt;# Add log probability of our chosen action to our history    &lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; policy.policy_history.dim() != &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;:
+        policy.policy_history = torch.cat([policy.policy_history, c.log_prob(action).unsqueeze(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;)])
+    &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt;:
+        policy.policy_history = (c.log_prob(action))
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; action
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;update_policy&lt;/span&gt;():
+    R = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+    rewards = []
+    
+    &lt;span class=&quot;hljs-comment&quot;&gt;# Discount future rewards back to the present using gamma&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; r &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; policy.reward_episode[::-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]:
+        R = r + policy.gamma * R
+        rewards.insert(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;,R)
+        
+    &lt;span class=&quot;hljs-comment&quot;&gt;# Scale rewards&lt;/span&gt;
+    rewards = torch.FloatTensor(rewards)
+    rewards = (rewards - rewards.mean()) / (rewards.std() + np.finfo(np.float32).eps)
+    
+    &lt;span class=&quot;hljs-comment&quot;&gt;# Calculate loss&lt;/span&gt;
+    loss = (torch.&lt;span class=&quot;hljs-built_in&quot;&gt;sum&lt;/span&gt;(torch.mul(policy.policy_history, Variable(rewards)).mul(-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;), -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;))
+    
+    &lt;span class=&quot;hljs-comment&quot;&gt;# Update network weights&lt;/span&gt;
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
+    &lt;span class=&quot;hljs-comment&quot;&gt;#Save and intialize episode history counters&lt;/span&gt;
+    policy.loss_history.append(loss.item())
+    policy.reward_history.append(np.&lt;span class=&quot;hljs-built_in&quot;&gt;sum&lt;/span&gt;(policy.reward_episode))
+    policy.policy_history = Variable(torch.Tensor())
+    policy.reward_episode= []
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;main&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;episodes&lt;/span&gt;):
+    running_reward = &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; episode &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;range&lt;/span&gt;(episodes):
+        state,_ = env.reset() &lt;span class=&quot;hljs-comment&quot;&gt;# Reset environment and record the starting state&lt;/span&gt;
+        done = &lt;span class=&quot;hljs-literal&quot;&gt;False&lt;/span&gt;       
+    
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; time &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;range&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;):
+            action = select_action(state)
+            &lt;span class=&quot;hljs-comment&quot;&gt;# Step through environment using chosen action&lt;/span&gt;
+            state, reward, done, _, _ = env.step(action.item())
+
+            &lt;span class=&quot;hljs-comment&quot;&gt;# Save reward&lt;/span&gt;
+            policy.reward_episode.append(reward)
+            &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; done:
+                &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;
+        
+        &lt;span class=&quot;hljs-comment&quot;&gt;# Used to determine when the environment is solved.&lt;/span&gt;
+        running_reward = (running_reward * &lt;span class=&quot;hljs-number&quot;&gt;0.99&lt;/span&gt;) + (time * &lt;span class=&quot;hljs-number&quot;&gt;0.01&lt;/span&gt;)
+
+        update_policy()
+
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; episode % &lt;span class=&quot;hljs-number&quot;&gt;50&lt;/span&gt; == &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;:
+            &lt;span class=&quot;hljs-built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode {}&#92;tLast length: {:5d}&#92;tAverage length: {:.2f}&amp;#x27;&lt;/span&gt;.&lt;span class=&quot;hljs-built_in&quot;&gt;format&lt;/span&gt;(episode, time, running_reward))
+
+        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; running_reward &amp;gt; env.spec.reward_threshold:
+            &lt;span class=&quot;hljs-built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Solved! Running reward is now {} and the last episode runs to {} time steps!&amp;quot;&lt;/span&gt;.&lt;span class=&quot;hljs-built_in&quot;&gt;format&lt;/span&gt;(running_reward, time))
+            &lt;span class=&quot;hljs-keyword&quot;&gt;break&lt;/span&gt;
+
+episodes = &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;
+main(episodes)
+
+
+window = &lt;span class=&quot;hljs-built_in&quot;&gt;int&lt;/span&gt;(episodes/&lt;span class=&quot;hljs-number&quot;&gt;20&lt;/span&gt;)
+
+fig, ((ax1), (ax2)) = plt.subplots(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, sharey=&lt;span class=&quot;hljs-literal&quot;&gt;True&lt;/span&gt;, figsize=[&lt;span class=&quot;hljs-number&quot;&gt;9&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;9&lt;/span&gt;]);
+rolling_mean = pd.Series(policy.reward_history).rolling(window).mean()
+std = pd.Series(policy.reward_history).rolling(window).std()
+ax1.plot(rolling_mean)
+ax1.fill_between(&lt;span class=&quot;hljs-built_in&quot;&gt;range&lt;/span&gt;(&lt;span class=&quot;hljs-built_in&quot;&gt;len&lt;/span&gt;(policy.reward_history)),rolling_mean-std, rolling_mean+std, color=&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;orange&amp;#x27;&lt;/span&gt;, alpha=&lt;span class=&quot;hljs-number&quot;&gt;0.2&lt;/span&gt;)
+ax1.set_title(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode Length Moving Average ({}-episode window)&amp;#x27;&lt;/span&gt;.&lt;span class=&quot;hljs-built_in&quot;&gt;format&lt;/span&gt;(window))
+ax1.set_xlabel(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode&amp;#x27;&lt;/span&gt;); ax1.set_ylabel(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode Length&amp;#x27;&lt;/span&gt;)
+
+ax2.plot(policy.reward_history)
+ax2.set_title(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode Length&amp;#x27;&lt;/span&gt;)
+ax2.set_xlabel(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode&amp;#x27;&lt;/span&gt;); ax2.set_ylabel(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;Episode Length&amp;#x27;&lt;/span&gt;)
+
+fig.tight_layout(pad=&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
+plt.show()
+&lt;span class=&quot;hljs-comment&quot;&gt;#fig.savefig(&amp;#x27;results.png&amp;#x27;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;explanation%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#explanation%3A&quot;&gt;Explanation:&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Policy Network&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;PolicyNetwork&lt;/code&gt; class defines a simple feedforward neural network with two layers. The input size is 4 (for the state space of CartPole) and the output size is 2 (for the two actions: left and right).&lt;/li&gt;
+&lt;li&gt;The output of the network is passed through a softmax function to obtain a probability distribution over the actions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Action Selection&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;select_action&lt;/code&gt; function takes a state, computes the policy probabilities, and samples an action according to these probabilities. The &lt;code&gt;Categorical&lt;/code&gt; distribution is used to sample actions based on the probabilities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Discounted Rewards&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;compute_discounted_rewards&lt;/code&gt; function calculates the discounted rewards using the formula:
+[
+G_t = R_t + &#92;gamma G_{t+1}
+]
+where ( &#92;gamma ) is the discount factor. It ensures that future rewards are appropriately discounted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Training Loop&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For each episode, the agent interacts with the environment and collects actions and rewards.&lt;/li&gt;
+&lt;li&gt;After the episode, the code computes the discounted rewards and normalizes them to reduce variance.&lt;/li&gt;
+&lt;li&gt;The policy loss is computed as the negative log probability of the chosen actions, weighted by the discounted rewards.&lt;/li&gt;
+&lt;li&gt;The optimizer updates the policy network’s weights by performing gradient descent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Testing&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After training, the agent is tested by running a few episodes and calculating the total reward obtained by following the learned policy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;notes%3A&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/vpg_example/#notes%3A&quot;&gt;Notes:&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Exploration vs Exploitation&lt;/strong&gt;: This implementation uses pure policy gradient without any explicit exploration strategy (like epsilon-greedy or entropy regularization). In practice, adding some exploration (e.g., via entropy or noise) can improve learning.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stability&lt;/strong&gt;: This simple implementation may not perform as well as more advanced methods like TRPO or PPO. It may also experience high variance in the rewards, which can be addressed by adding a baseline (such as a value function) or using other techniques like generalized advantage estimation (GAE).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This code provides a basic structure of Vanilla Policy Gradient (REINFORCE) and can be expanded to handle more complex environments or added with more sophisticated optimizations.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Actor-Critic: One-Step Update for Actor and Critic Networks</title>
