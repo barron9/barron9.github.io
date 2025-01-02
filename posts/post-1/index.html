@@ -13,12 +13,12 @@
   <style>
   	:root{--white:#fafafa;--black:#191919;--gray:#212121;--gray-2:#a6a6a6;--blue:#0070ff;--blue-2:#61dcff;--ff-sans-serif:Roboto,Helvetica,sans-serif;--ff-serif:Garamond,serif;--ff-code:monospace}*{box-sizing:border-box}body{--clr-background:var(--white);--clr-text:var(--black);--clr-text-secondary:var(--gray-2);--clr-link:var(--blue);--ff-current:var(--ff-sans-serif);background:var(--clr-background);color:var(--clr-text);font-family:var(--ff-current);padding:12px;line-height:1.5rem}body.dark{--clr-background:var(--black);--clr-text:var(--white);--clr-link:var(--blue-2)}.main-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 3fr 1fr;gap:3rem}main{min-height:86vh;padding-top:20px}.side-nav{text-align:end;line-height:2rem}.side-nav .site-title{all:unset}.side-nav .site-title:hover{all:unset;cursor:pointer}.side-nav a{all:unset;padding:8px;cursor:pointer}.side-nav a.active,.side-nav a:hover{background:var(--clr-text);color:var(--clr-background)}.side-nav ul{list-style:none}.side-nav ul li{margin:.5rem 0}.side-nav-inner{padding:20px;position:sticky;top:0}a{color:var(--clr-link)}.breadcrumbs{margin-bottom:1rem}article h1{font-size:2rem;line-height:2.5rem}article h1>a,article h2>a,article h3>a{color:var(--clr-text);text-decoration:none}article a:hover{color:var(--clr-link)}article img{max-width:100%}.thumbnail-container img{max-width:100%}.post-entries{padding:0;list-style:none}.post-entry{margin-bottom:4rem}.post-entry__title a{color:var(--clr-text)}.post-entry__title a:hover{color:var(--clr-link)}.post-entry__date{color:var(--clr-text-secondary)}.bibliography ul{padding:0;list-style:none}.bibliography li{padding-left:3rem;text-indent:-3rem;text-align:left;margin:1rem 0 .2rem 0}.main-footer{text-align:center;margin-top:4rem}.post-author{display:none}code{font-size:1.1em}pre{font-size:1em;overflow-x:auto;font-family:var(--ff-code);padding:12px;display:grid}pre code{overflow-x:auto}select{padding:2px;border:1px solid var(--clr-text);background-color:var(--clr-background);color:var(--clr-text);font-size:1em}button{padding:4px;border:1px solid var(--clr-text);color:var(--clr-text);background-color:transparent;cursor:pointer}.side-nav .controls{margin-top:2rem}@media (max-width:1200px){.main-container{grid-template-columns:1fr 3fr}}@media (max-width:720px){.main-container{grid-template-columns:1fr}}@media print{body.dark{--clr-background:#fff;--clr-text:#000;--clr-link:var(--blue)}.side-nav{display:none}.main-footer{display:none}.post-author{display:block}}
   </style>
-  <meta property="og:title" content="Post 1">
+  <meta property="og:title" content="Actor-Critic: One-Step Update for Actor and Critic Networks">
   <meta property="og:image" content="">
-  <meta property="og:description" content="This is a post 2">
-  <meta name="description" content="This is a post 2">
+  <meta property="og:description" content="In **Actor-Critic** reinforcement learning methods, there are two main components: the **Actor** (policy network) and the **Critic** (value network). These two networks work together to improve the agent&#39;s performance. Let&#39;s break down the **one-step update** for both networks.">
+  <meta name="description" content="In **Actor-Critic** reinforcement learning methods, there are two main components: the **Actor** (policy network) and the **Critic** (value network). These two networks work together to improve the agent&#39;s performance. Let&#39;s break down the **one-step update** for both networks.">
   <meta name="theme-color" content="#0f0f11">
-  <title>Post 1 | 0v3r.com</title>
+  <title>Actor-Critic: One-Step Update for Actor and Critic Networks | 0v3r.com</title>
 </head>
 
   <body>
@@ -97,7 +97,7 @@
       &gt;
     
   
-    <span><a href="/posts/post-1/">Post 1</a></span>
+    <span><a href="/posts/post-1/">ac_methods</a></span>
     
   
 </nav>
@@ -106,15 +106,15 @@
         
 
 <article>
-    <h1>Post 1</h1>
+    <h1>Actor-Critic: One-Step Update for Actor and Critic Networks</h1>
     <div class="post-author">
       by
       <strong>
         
-          Jane Doe,
+          chat.,
         
       </strong>
-    <span>Jun 22, 2024</span>
+    <span>Jan 2, 2025</span>
     </div>
     <p><div class="table-of-contents"><h2>Table of Contents</h2><ul><li><a href="#actor-critic%3A-one-step-update-for-actor-and-critic-networks">Actor-Critic: One-Step Update for Actor and Critic Networks</a><ul><li><a href="#1.-actor-network---one-step-update">1. Actor Network - One-Step Update</a></li><li><a href="#2.-critic-network---one-step-update">2. Critic Network - One-Step Update</a></li><li><a href="#summary-of-one-step-updates%3A">Summary of One-Step Updates:</a></li><li><a href="#example-of-one-step-update%3A">Example of One-Step Update:</a></li><li><a href="#key-points%3A">Key Points:</a></li></ul></li></ul></div></p>
 <h1 id="actor-critic%3A-one-step-update-for-actor-and-critic-networks" tabindex="-1"><a class="header-anchor" href="#actor-critic%3A-one-step-update-for-actor-and-critic-networks">Actor-Critic: One-Step Update for Actor and Critic Networks</a></h1>

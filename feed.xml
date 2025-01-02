@@ -4,7 +4,7 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-02T11:30:37Z</updated>
+	<updated>2025-01-02T11:40:31Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
@@ -12,81 +12,9 @@
 	</author>
 	
 	<entry>
-		<title>Post 2</title>
-		<link href="https://0v3r.com/posts/post-2/"/>
-		<updated>2024-06-29T00:00:00Z</updated>
-		<id>https://0v3r.com/posts/post-2/</id>
-		<content type="html">&lt;h2 id=&quot;vix-semper&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/post-2/#vix-semper&quot;&gt;Vix semper&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lorem markdownum spicula picae? Per tum Esse clara, fixum prioribus Procne
-&lt;em&gt;viribus quam dixerat&lt;/em&gt;, axes digitos. Vitale Cecropide &lt;strong&gt;corpore exhibuit&lt;/strong&gt; quam
-in album, saeva alii; canis &lt;a href=&quot;http://tota-dixit.io/receptis.aspx&quot;&gt;cornua&lt;/a&gt;, tu
-agitque, Circes noli. Tuli ora et vulnere imitamina furtiva vitiorum mandasset
-tempora in.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Gelida audet spectarat conplexaque fronde corve&lt;/li&gt;
-&lt;li&gt;Nec Occupat saxa non&lt;/li&gt;
-&lt;li&gt;Subito montis marmoreo at quod erat aquosis&lt;/li&gt;
-&lt;li&gt;Te Circen et carinas&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&quot;hljs language-ts&quot;&gt;&lt;span class=&quot;hljs-variable language_&quot;&gt;module&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;exports&lt;/span&gt; = &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;hljs-params&quot;&gt;eleventyConfig&lt;/span&gt;) {
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/styles&amp;quot;&lt;/span&gt;);
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/assets&amp;quot;&lt;/span&gt;);
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/scripts&amp;quot;&lt;/span&gt;);
-
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addGlobalData&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;globalData&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-variable constant_&quot;&gt;GLOBAL_DATA&lt;/span&gt;);
-
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPlugin&lt;/span&gt;(navigationPlugin);
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPlugin&lt;/span&gt;(pluginRss);
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addLiquidFilter&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;dateToRfc3339&amp;quot;&lt;/span&gt;, pluginRss.&lt;span class=&quot;hljs-property&quot;&gt;dateToRfc3339&lt;/span&gt;);
-
-  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addFilter&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;postDate&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;dateObj&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;DateTime&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;fromJSDate&lt;/span&gt;(dateObj).&lt;span class=&quot;hljs-title function_&quot;&gt;toLocaleString&lt;/span&gt;(&lt;span class=&quot;hljs-title class_&quot;&gt;DateTime&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;DATE_MED&lt;/span&gt;);
-  });
-
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
-    &lt;span class=&quot;hljs-attr&quot;&gt;dir&lt;/span&gt;: {
-      &lt;span class=&quot;hljs-attr&quot;&gt;input&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;src&amp;quot;&lt;/span&gt;,
-      &lt;span class=&quot;hljs-attr&quot;&gt;output&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;public&amp;quot;&lt;/span&gt;,
-      &lt;span class=&quot;hljs-attr&quot;&gt;includes&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;includes/partials&amp;quot;&lt;/span&gt;,
-      &lt;span class=&quot;hljs-attr&quot;&gt;layouts&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;includes/layouts&amp;quot;&lt;/span&gt;,
-    },
-  };
-};
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Non ora augendo &lt;strong&gt;tota Amor&lt;/strong&gt; instructa &lt;code&gt;mora multis&lt;/code&gt;, pestis. At Mavortis munera
-sinusque: patiar qui ea fata frondibus illis et ictus, et Erinyn demittite.
-Flava volanti, altaribus tua meas nunc recepta factorum de tibi vivis causam
-deque non lympha violentia coniuge. Semper per nemorumque &lt;em&gt;harena&lt;/em&gt; vulnere
-moenia, est Luna iunctum hoc lumina minus.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Coma qui quae dapes notavi Latous laeti secundi Fames. Illa terra abstinuit
-incidit referret Talia. Hecates infelix adempta miscentem relinquam auctoribus
-Medea eras mei illa, mea diriguit bellum facta inter benefacta. Cupiens
-mendacis quae nescio opus verba, intellectumque decerpta.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;intrare-visu-phaethon-carebat-vidistis-a-rogat&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/post-2/#intrare-visu-phaethon-carebat-vidistis-a-rogat&quot;&gt;Intrare visu Phaethon carebat vidistis a rogat&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Armigerae quam, nutu naides nisi pallore, ratione simul venerat arce pisa
-latentis saturos reddunt. Nec nunc loqui Iovi caeso opto &lt;strong&gt;igitur lege&lt;/strong&gt;
-nomenque carbasa si?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Cuncta promptum accipimus factas dolet&lt;/li&gt;
-&lt;li&gt;Pro aqua morsu&lt;/li&gt;
-&lt;li&gt;Annos saetigerosque Cressa instabilemque demas&lt;/li&gt;
-&lt;li&gt;Quietem nec ventos munera huic longos&lt;/li&gt;
-&lt;li&gt;Erat fidem&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Parentis auras responsura Maeandri similis tenuit pulchros nec unde &lt;em&gt;Iris&lt;/em&gt;
-Deucalioneas aura excipit? Sit tum rerum signaque relictae plus: relinquunt, ego
-decorem. Materiaque tellure invia; ne ecce domos, in Argosque non fiet alter.&lt;/p&gt;
-&lt;p&gt;Putavi nec novum Byblis sic ursaque, oro est Ismario quod odit patulos dulcis
-teste tangendo. Mediis sit sine.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Post 1</title>
+		<title>Actor-Critic: One-Step Update for Actor and Critic Networks</title>
 		<link href="https://0v3r.com/posts/post-1/"/>
-		<updated>2024-06-22T00:00:00Z</updated>
+		<updated>2025-01-02T00:00:00Z</updated>
 		<id>https://0v3r.com/posts/post-1/</id>
 		<content type="html">&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;table-of-contents&quot;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#actor-critic%3A-one-step-update-for-actor-and-critic-networks&quot;&gt;Actor-Critic: One-Step Update for Actor and Critic Networks&lt;/a&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#1.-actor-network---one-step-update&quot;&gt;1. Actor Network - One-Step Update&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#2.-critic-network---one-step-update&quot;&gt;2. Critic Network - One-Step Update&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#summary-of-one-step-updates%3A&quot;&gt;Summary of One-Step Updates:&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#example-of-one-step-update%3A&quot;&gt;Example of One-Step Update:&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/post-1/#key-points%3A&quot;&gt;Key Points:&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
 &lt;h1 id=&quot;actor-critic%3A-one-step-update-for-actor-and-critic-networks&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/post-1/#actor-critic%3A-one-step-update-for-actor-and-critic-networks&quot;&gt;Actor-Critic: One-Step Update for Actor and Critic Networks&lt;/a&gt;&lt;/h1&gt;
@@ -210,6 +138,78 @@ Q(s_t, a_t) &#92;leftarrow Q(s_t, a_t) + &#92;beta &#92;delta_t &#92;nabla_&#92;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The &lt;strong&gt;Actor-Critic&lt;/strong&gt; method involves simultaneous updates to both networks: the &lt;strong&gt;actor&lt;/strong&gt; learns to take better actions based on the critic’s value function, and the &lt;strong&gt;critic&lt;/strong&gt; improves its value estimates based on the actions taken by the actor.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Post 2</title>
+		<link href="https://0v3r.com/posts/post-2/"/>
+		<updated>2024-06-29T00:00:00Z</updated>
+		<id>https://0v3r.com/posts/post-2/</id>
+		<content type="html">&lt;h2 id=&quot;vix-semper&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/post-2/#vix-semper&quot;&gt;Vix semper&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lorem markdownum spicula picae? Per tum Esse clara, fixum prioribus Procne
+&lt;em&gt;viribus quam dixerat&lt;/em&gt;, axes digitos. Vitale Cecropide &lt;strong&gt;corpore exhibuit&lt;/strong&gt; quam
+in album, saeva alii; canis &lt;a href=&quot;http://tota-dixit.io/receptis.aspx&quot;&gt;cornua&lt;/a&gt;, tu
+agitque, Circes noli. Tuli ora et vulnere imitamina furtiva vitiorum mandasset
+tempora in.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Gelida audet spectarat conplexaque fronde corve&lt;/li&gt;
+&lt;li&gt;Nec Occupat saxa non&lt;/li&gt;
+&lt;li&gt;Subito montis marmoreo at quod erat aquosis&lt;/li&gt;
+&lt;li&gt;Te Circen et carinas&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs language-ts&quot;&gt;&lt;span class=&quot;hljs-variable language_&quot;&gt;module&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;exports&lt;/span&gt; = &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;hljs-params&quot;&gt;eleventyConfig&lt;/span&gt;) {
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/styles&amp;quot;&lt;/span&gt;);
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/assets&amp;quot;&lt;/span&gt;);
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPassthroughCopy&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;./src/scripts&amp;quot;&lt;/span&gt;);
+
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addGlobalData&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;globalData&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-variable constant_&quot;&gt;GLOBAL_DATA&lt;/span&gt;);
+
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPlugin&lt;/span&gt;(navigationPlugin);
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addPlugin&lt;/span&gt;(pluginRss);
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addLiquidFilter&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;dateToRfc3339&amp;quot;&lt;/span&gt;, pluginRss.&lt;span class=&quot;hljs-property&quot;&gt;dateToRfc3339&lt;/span&gt;);
+
+  eleventyConfig.&lt;span class=&quot;hljs-title function_&quot;&gt;addFilter&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;postDate&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;dateObj&lt;/span&gt;) =&amp;gt;&lt;/span&gt; {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;DateTime&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;fromJSDate&lt;/span&gt;(dateObj).&lt;span class=&quot;hljs-title function_&quot;&gt;toLocaleString&lt;/span&gt;(&lt;span class=&quot;hljs-title class_&quot;&gt;DateTime&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;DATE_MED&lt;/span&gt;);
+  });
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
+    &lt;span class=&quot;hljs-attr&quot;&gt;dir&lt;/span&gt;: {
+      &lt;span class=&quot;hljs-attr&quot;&gt;input&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;src&amp;quot;&lt;/span&gt;,
+      &lt;span class=&quot;hljs-attr&quot;&gt;output&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;public&amp;quot;&lt;/span&gt;,
+      &lt;span class=&quot;hljs-attr&quot;&gt;includes&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;includes/partials&amp;quot;&lt;/span&gt;,
+      &lt;span class=&quot;hljs-attr&quot;&gt;layouts&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;includes/layouts&amp;quot;&lt;/span&gt;,
+    },
+  };
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Non ora augendo &lt;strong&gt;tota Amor&lt;/strong&gt; instructa &lt;code&gt;mora multis&lt;/code&gt;, pestis. At Mavortis munera
+sinusque: patiar qui ea fata frondibus illis et ictus, et Erinyn demittite.
+Flava volanti, altaribus tua meas nunc recepta factorum de tibi vivis causam
+deque non lympha violentia coniuge. Semper per nemorumque &lt;em&gt;harena&lt;/em&gt; vulnere
+moenia, est Luna iunctum hoc lumina minus.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Coma qui quae dapes notavi Latous laeti secundi Fames. Illa terra abstinuit
+incidit referret Talia. Hecates infelix adempta miscentem relinquam auctoribus
+Medea eras mei illa, mea diriguit bellum facta inter benefacta. Cupiens
+mendacis quae nescio opus verba, intellectumque decerpta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;intrare-visu-phaethon-carebat-vidistis-a-rogat&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/post-2/#intrare-visu-phaethon-carebat-vidistis-a-rogat&quot;&gt;Intrare visu Phaethon carebat vidistis a rogat&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Armigerae quam, nutu naides nisi pallore, ratione simul venerat arce pisa
+latentis saturos reddunt. Nec nunc loqui Iovi caeso opto &lt;strong&gt;igitur lege&lt;/strong&gt;
+nomenque carbasa si?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Cuncta promptum accipimus factas dolet&lt;/li&gt;
+&lt;li&gt;Pro aqua morsu&lt;/li&gt;
+&lt;li&gt;Annos saetigerosque Cressa instabilemque demas&lt;/li&gt;
+&lt;li&gt;Quietem nec ventos munera huic longos&lt;/li&gt;
+&lt;li&gt;Erat fidem&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Parentis auras responsura Maeandri similis tenuit pulchros nec unde &lt;em&gt;Iris&lt;/em&gt;
+Deucalioneas aura excipit? Sit tum rerum signaque relictae plus: relinquunt, ego
+decorem. Materiaque tellure invia; ne ecce domos, in Argosque non fiet alter.&lt;/p&gt;
+&lt;p&gt;Putavi nec novum Byblis sic ursaque, oro est Ismario quod odit patulos dulcis
+teste tangendo. Mediis sit sine.&lt;/p&gt;
 </content>
 	</entry>
 </feed>
