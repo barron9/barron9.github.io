@@ -111,7 +111,7 @@
       </strong>
     <span>Jan 3, 2025</span>
     </div>
-    <h1 id="understanding-attention-mechanisms-with-a-simple-training-loop" tabindex="-1"><a class="header-anchor" href="#understanding-attention-mechanisms-with-a-simple-training-loop">Understanding Attention Mechanisms with a Simple Training Loop</a></h1>
+    <p>[toc]</p>
 <p>In recent years, <strong>Attention Mechanisms</strong> have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like <strong>GPT</strong> and <strong>BERT</strong>. One key question is <strong>how do attention weights get learned</strong>? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”</p>
 <h2 id="what-is-attention%3F" tabindex="-1"><a class="header-anchor" href="#what-is-attention%3F">What is Attention?</a></h2>
 <p>Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.</p>
@@ -146,6 +146,68 @@ word_embeddings = {
     <span class="hljs-string">&quot;mat&quot;</span>: np.array([<span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.7</span>])
 }
 </code></pre>
+<h3 id="step-2%3A-define-the-attention-mechanism" tabindex="-1"><a class="header-anchor" href="#step-2%3A-define-the-attention-mechanism">Step 2: Define the Attention Mechanism</a></h3>
+<p>The attention mechanism will compute scores using the dot product between a query and keys. The scores will then be normalized using the softmax function, which transforms them into attention weights. These weights will be used to calculate a weighted sum of the values (which in this case are the word embeddings).</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">attention</span>(<span class="hljs-params">query, key, value</span>):
+    scores = np.dot(query, key.T)
+    scale_factor = np.sqrt(query.shape[<span class="hljs-number">1</span>])  <span class="hljs-comment"># Scaling for numerical stability</span>
+    scores = scores / scale_factor  <span class="hljs-comment"># Apply scaling</span>
+
+    attention_weights = np.exp(scores - np.<span class="hljs-built_in">max</span>(scores))  <span class="hljs-comment"># Softmax trick for stability</span>
+    attention_weights = attention_weights / np.<span class="hljs-built_in">sum</span>(attention_weights, axis=-<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)
+
+    output = np.dot(attention_weights, value)  <span class="hljs-comment"># Weighted sum of values</span>
+    <span class="hljs-keyword">return</span> output, attention_weights
+</code></pre>
+<h3 id="step-3%3A-simulate-training" tabindex="-1"><a class="header-anchor" href="#step-3%3A-simulate-training">Step 3: Simulate Training</a></h3>
+<p>In this simplified scenario, the target for the output is designed to emphasize the word “cat.” The model’s goal is to learn how to focus on this word by adjusting the attention weights during training.</p>
+<h1 id="dummy-loss-function-(mean-squared-error)" tabindex="-1"><a class="header-anchor" href="#dummy-loss-function-(mean-squared-error)">Dummy loss function (Mean Squared Error)</a></h1>
+<pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">loss_function</span>(<span class="hljs-params">output, target</span>):
+    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>((output - target) ** <span class="hljs-number">2</span>)  <span class="hljs-comment"># Simple squared error</span>
+</code></pre>
+<h3 id="step-4%3A-training-loop" tabindex="-1"><a class="header-anchor" href="#step-4%3A-training-loop">Step 4: Training Loop</a></h3>
+<p>In the training loop, we simulate training by manually adjusting the attention weights to focus more on the word “cat.” The query vector is initialized to represent a focus on “cat,” and the model iteratively learns to adjust its attention.</p>
+<pre><code class="hljs language-python">num_epochs = <span class="hljs-number">100</span>
+learning_rate = <span class="hljs-number">0.01</span>
+
+query = np.array([[<span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>]])  <span class="hljs-comment"># Arbitrary query vector</span>
+key = np.array([word_embeddings[word] <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> sentence])  <span class="hljs-comment"># Keys are word embeddings</span>
+value = key  <span class="hljs-comment"># In this case, values are the same as keys</span>
+
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):
+    <span class="hljs-comment"># Forward pass</span>
+    output, attention_weights = attention(query, key, value)
+
+    <span class="hljs-comment"># Define the target to focus on the word &quot;cat&quot;</span>
+    target = np.zeros_like(output)
+    target[<span class="hljs-number">0</span>] = word_embeddings[<span class="hljs-string">&quot;cat&quot;</span>]  <span class="hljs-comment"># Emphasize &quot;cat&quot;</span>
+
+    <span class="hljs-comment"># Compute the loss (how well did the model focus on &quot;cat&quot;)</span>
+    loss = loss_function(output, target)
+
+    <span class="hljs-comment"># Simulate weight update by adjusting attention weights</span>
+    attention_weights[<span class="hljs-number">0</span>] = attention_weights[<span class="hljs-number">0</span>] * (<span class="hljs-number">1.0</span> + learning_rate)
+    attention_weights = attention_weights / np.<span class="hljs-built_in">sum</span>(attention_weights, axis=-<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)
+
+    <span class="hljs-comment"># Adjust query and key (simulating learning)</span>
+    query = query * (<span class="hljs-number">1.0</span> - learning_rate)
+    key[<span class="hljs-number">1</span>] = key[<span class="hljs-number">1</span>] * (<span class="hljs-number">1.0</span> + learning_rate)
+
+    <span class="hljs-keyword">if</span> epoch % <span class="hljs-number">20</span> == <span class="hljs-number">0</span>:  <span class="hljs-comment"># Print every 20 epochs</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">{epoch}</span>, Loss: <span class="hljs-subst">{loss:<span class="hljs-number">.4</span>f}</span>&quot;</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Attention Weights: <span class="hljs-subst">{attention_weights}</span>&quot;</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Output (Focus on &#x27;cat&#x27;): <span class="hljs-subst">{output}</span>&quot;</span>)
+
+<span class="hljs-comment"># Final attention weights after training</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\nFinal attention weights:&quot;</span>, attention_weights)
+
+</code></pre>
+<h3 id="explanation-of-training-process" tabindex="-1"><a class="header-anchor" href="#explanation-of-training-process">Explanation of Training Process</a></h3>
+<p>Query Vector: Initially, the query vector is set to an arbitrary value. Over time, it will be adjusted to enhance focus on the word “cat.”
+Attention Weights Update: During each epoch, we simulate the adjustment of attention weights by increasing the weight for “cat.” The model learns to emphasize this word as it progresses.
+Loss Function: The model computes a loss (based on the difference between the predicted and target embeddings) and adjusts its parameters accordingly.
+Final Output
+After completing the training loop, the final attention weights show the model’s learned focus on the word “cat.” The attention weights for “cat” should be higher than the others, indicating that the model has successfully learned to prioritize this word.</p>
 
 </article>
 
