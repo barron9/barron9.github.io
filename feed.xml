@@ -4,7 +4,7 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-03T09:50:27Z</updated>
+	<updated>2025-01-03T09:54:22Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
@@ -16,7 +16,7 @@
 		<link href="https://0v3r.com/posts/attention/"/>
 		<updated>2025-01-03T00:00:00Z</updated>
 		<id>https://0v3r.com/posts/attention/</id>
-		<content type="html">&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;table-of-contents&quot;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#objective&quot;&gt;Objective&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#steps-to-implement&quot;&gt;Steps to Implement&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#code-walkthrough&quot;&gt;Code Walkthrough&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#dummy-loss-function-(mean-squared-error)&quot;&gt;Dummy loss function (Mean Squared Error)&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;table-of-contents&quot;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#objective&quot;&gt;Objective&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#steps-to-implement&quot;&gt;Steps to Implement&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#code-walkthrough&quot;&gt;Code Walkthrough&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#final-output&quot;&gt;Final Output&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;In recent years, &lt;strong&gt;Attention Mechanisms&lt;/strong&gt; have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;BERT&lt;/strong&gt;. One key question is &lt;strong&gt;how do attention weights get learned&lt;/strong&gt;? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”&lt;/p&gt;
 &lt;h2 id=&quot;what-is-attention%3F&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.&lt;/p&gt;
@@ -66,7 +66,7 @@ word_embeddings = {
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;step-3%3A-simulate-training&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#step-3%3A-simulate-training&quot;&gt;Step 3: Simulate Training&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In this simplified scenario, the target for the output is designed to emphasize the word “cat.” The model’s goal is to learn how to focus on this word by adjusting the attention weights during training.&lt;/p&gt;
-&lt;h1 id=&quot;dummy-loss-function-(mean-squared-error)&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#dummy-loss-function-(mean-squared-error)&quot;&gt;Dummy loss function (Mean Squared Error)&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Dummy loss function (Mean Squared Error)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs language-python&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;loss_function&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;output, target&lt;/span&gt;):
     &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; np.&lt;span class=&quot;hljs-built_in&quot;&gt;sum&lt;/span&gt;((output - target) ** &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)  &lt;span class=&quot;hljs-comment&quot;&gt;# Simple squared error&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -108,11 +108,11 @@ value = key  &lt;span class=&quot;hljs-comment&quot;&gt;# In this case, values a
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;explanation-of-training-process&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#explanation-of-training-process&quot;&gt;Explanation of Training Process&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Query Vector: Initially, the query vector is set to an arbitrary value. Over time, it will be adjusted to enhance focus on the word “cat.”
-Attention Weights Update: During each epoch, we simulate the adjustment of attention weights by increasing the weight for “cat.” The model learns to emphasize this word as it progresses.
-Loss Function: The model computes a loss (based on the difference between the predicted and target embeddings) and adjusts its parameters accordingly.
-Final Output
-After completing the training loop, the final attention weights show the model’s learned focus on the word “cat.” The attention weights for “cat” should be higher than the others, indicating that the model has successfully learned to prioritize this word.&lt;/p&gt;
+&lt;p&gt;-Query Vector: Initially, the query vector is set to an arbitrary value. Over time, it will be adjusted to enhance focus on the word “cat.”&lt;/p&gt;
+&lt;p&gt;-Attention Weights Update: During each epoch, we simulate the adjustment of attention weights by increasing the weight for “cat.” The model learns to emphasize this word as it progresses.&lt;/p&gt;
+&lt;p&gt;-Loss Function: The model computes a loss (based on the difference between the predicted and target embeddings) and adjusts its parameters accordingly.&lt;/p&gt;
+&lt;h2 id=&quot;final-output&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#final-output&quot;&gt;Final Output&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;After completing the training loop, the final attention weights show the model’s learned focus on the word “cat.” The attention weights for “cat” should be higher than the others, indicating that the model has successfully learned to prioritize this word.&lt;/p&gt;
 </content>
 	</entry>
 	

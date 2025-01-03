@@ -111,7 +111,7 @@
       </strong>
     <span>Jan 3, 2025</span>
     </div>
-    <p><div class="table-of-contents"><h2>Table of Contents</h2><ul><li><ul><li><a href="#what-is-attention%3F">What is Attention?</a></li><li><a href="#objective">Objective</a></li><li><a href="#steps-to-implement">Steps to Implement</a></li><li><a href="#code-walkthrough">Code Walkthrough</a></li></ul></li><li><a href="#dummy-loss-function-(mean-squared-error)">Dummy loss function (Mean Squared Error)</a></li></ul></div></p>
+    <p><div class="table-of-contents"><h2>Table of Contents</h2><ul><li><a href="#what-is-attention%3F">What is Attention?</a></li><li><a href="#objective">Objective</a></li><li><a href="#steps-to-implement">Steps to Implement</a></li><li><a href="#code-walkthrough">Code Walkthrough</a></li><li><a href="#final-output">Final Output</a></li></ul></div></p>
 <p>In recent years, <strong>Attention Mechanisms</strong> have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like <strong>GPT</strong> and <strong>BERT</strong>. One key question is <strong>how do attention weights get learned</strong>? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”</p>
 <h2 id="what-is-attention%3F" tabindex="-1"><a class="header-anchor" href="#what-is-attention%3F">What is Attention?</a></h2>
 <p>Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.</p>
@@ -161,7 +161,7 @@ word_embeddings = {
 </code></pre>
 <h3 id="step-3%3A-simulate-training" tabindex="-1"><a class="header-anchor" href="#step-3%3A-simulate-training">Step 3: Simulate Training</a></h3>
 <p>In this simplified scenario, the target for the output is designed to emphasize the word “cat.” The model’s goal is to learn how to focus on this word by adjusting the attention weights during training.</p>
-<h1 id="dummy-loss-function-(mean-squared-error)" tabindex="-1"><a class="header-anchor" href="#dummy-loss-function-(mean-squared-error)">Dummy loss function (Mean Squared Error)</a></h1>
+<p>Dummy loss function (Mean Squared Error)</p>
 <pre><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">loss_function</span>(<span class="hljs-params">output, target</span>):
     <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>((output - target) ** <span class="hljs-number">2</span>)  <span class="hljs-comment"># Simple squared error</span>
 </code></pre>
@@ -203,11 +203,11 @@ value = key  <span class="hljs-comment"># In this case, values are the same as k
 
 </code></pre>
 <h3 id="explanation-of-training-process" tabindex="-1"><a class="header-anchor" href="#explanation-of-training-process">Explanation of Training Process</a></h3>
-<p>Query Vector: Initially, the query vector is set to an arbitrary value. Over time, it will be adjusted to enhance focus on the word “cat.”
-Attention Weights Update: During each epoch, we simulate the adjustment of attention weights by increasing the weight for “cat.” The model learns to emphasize this word as it progresses.
-Loss Function: The model computes a loss (based on the difference between the predicted and target embeddings) and adjusts its parameters accordingly.
-Final Output
-After completing the training loop, the final attention weights show the model’s learned focus on the word “cat.” The attention weights for “cat” should be higher than the others, indicating that the model has successfully learned to prioritize this word.</p>
+<p>-Query Vector: Initially, the query vector is set to an arbitrary value. Over time, it will be adjusted to enhance focus on the word “cat.”</p>
+<p>-Attention Weights Update: During each epoch, we simulate the adjustment of attention weights by increasing the weight for “cat.” The model learns to emphasize this word as it progresses.</p>
+<p>-Loss Function: The model computes a loss (based on the difference between the predicted and target embeddings) and adjusts its parameters accordingly.</p>
+<h2 id="final-output" tabindex="-1"><a class="header-anchor" href="#final-output">Final Output</a></h2>
+<p>After completing the training loop, the final attention weights show the model’s learned focus on the word “cat.” The attention weights for “cat” should be higher than the others, indicating that the model has successfully learned to prioritize this word.</p>
 
 </article>
 
