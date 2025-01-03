@@ -4,7 +4,7 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-03T09:48:32Z</updated>
+	<updated>2025-01-03T09:50:27Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
@@ -16,7 +16,7 @@
 		<link href="https://0v3r.com/posts/attention/"/>
 		<updated>2025-01-03T00:00:00Z</updated>
 		<id>https://0v3r.com/posts/attention/</id>
-		<content type="html">&lt;p&gt;[toc]&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;table-of-contents&quot;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#objective&quot;&gt;Objective&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#steps-to-implement&quot;&gt;Steps to Implement&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#code-walkthrough&quot;&gt;Code Walkthrough&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://0v3r.com/posts/attention/#dummy-loss-function-(mean-squared-error)&quot;&gt;Dummy loss function (Mean Squared Error)&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
 &lt;p&gt;In recent years, &lt;strong&gt;Attention Mechanisms&lt;/strong&gt; have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;BERT&lt;/strong&gt;. One key question is &lt;strong&gt;how do attention weights get learned&lt;/strong&gt;? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”&lt;/p&gt;
 &lt;h2 id=&quot;what-is-attention%3F&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.&lt;/p&gt;
@@ -121,7 +121,8 @@ After completing the training loop, the final attention weights show the model�
 		<link href="https://0v3r.com/posts/policy_gradient_example/"/>
 		<updated>2025-01-02T00:00:00Z</updated>
 		<id>https://0v3r.com/posts/policy_gradient_example/</id>
-		<content type="html">&lt;p&gt;An example of how you can implement **Vanilla Policy Gradient ** in Python using &lt;strong&gt;PyTorch&lt;/strong&gt;. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;table-of-contents&quot;&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;
+An example of how you can implement **Vanilla Policy Gradient ** in Python using &lt;strong&gt;PyTorch&lt;/strong&gt;. The following code is for a simple environment (like CartPole from OpenAI’s Gym) and uses the REINFORCE algorithm for the policy gradient method.&lt;p&gt;&lt;/p&gt;
 &lt;h3 id=&quot;install-dependencies&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/policy_gradient_example/#install-dependencies&quot;&gt;Install Dependencies&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Make sure you have the necessary libraries installed. You can install them using:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;hljs language-bash&quot;&gt;pip install gym torch numpy
