@@ -4,12 +4,55 @@
 	<subtitle>Projects</subtitle>
 	<link href="https://0v3r.com/feed.xml" rel="self"/>
 	<link href="https://0v3r.com/"/>
-	<updated>2025-01-02T14:59:23Z</updated>
+	<updated>2025-01-03T09:36:19Z</updated>
 	<id>https://0v3r.com/</id>
 	<author>
 		<name>b</name>
 		<email>b@0v3r.com</email>
 	</author>
+	
+	<entry>
+		<title>Understanding Attention Mechanisms with a Simple Training Loop</title>
+		<link href="https://0v3r.com/posts/attention/"/>
+		<updated>2025-01-03T00:00:00Z</updated>
+		<id>https://0v3r.com/posts/attention/</id>
+		<content type="html">&lt;h1 id=&quot;understanding-attention-mechanisms-with-a-simple-training-loop&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#understanding-attention-mechanisms-with-a-simple-training-loop&quot;&gt;Understanding Attention Mechanisms with a Simple Training Loop&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;In recent years, &lt;strong&gt;Attention Mechanisms&lt;/strong&gt; have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;BERT&lt;/strong&gt;. One key question is &lt;strong&gt;how do attention weights get learned&lt;/strong&gt;? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”&lt;/p&gt;
+&lt;h2 id=&quot;what-is-attention%3F&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#what-is-attention%3F&quot;&gt;What is Attention?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.&lt;/p&gt;
+&lt;p&gt;At a high level, the &lt;strong&gt;attention mechanism&lt;/strong&gt; allows the model to &lt;strong&gt;focus&lt;/strong&gt; on different parts of an input sequence (e.g., a sentence) when making predictions. For instance, when translating a sentence, the model may need to “pay attention” to certain words more than others based on their relevance to the task at hand.&lt;/p&gt;
+&lt;p&gt;In a typical transformer-based model, the mechanism computes attention weights between words using &lt;strong&gt;queries&lt;/strong&gt; and &lt;strong&gt;keys&lt;/strong&gt;. These weights determine how much each word contributes to the output. The model learns these weights during training to improve its performance on a given task.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;objective&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#objective&quot;&gt;Objective&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In this post, we will simulate a simplified attention mechanism where we train the model to focus on the word &lt;strong&gt;“cat”&lt;/strong&gt; in the sentence &lt;strong&gt;“The cat sat on the mat.”&lt;/strong&gt;. We will define a dummy training task where the model must learn to give higher attention weights to the word “cat” through a training loop.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;steps-to-implement&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#steps-to-implement&quot;&gt;Steps to Implement&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here’s a summary of the steps we will follow:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Initialize word embeddings&lt;/strong&gt; for a simple sentence, including the word “cat”.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Define a simple attention mechanism&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Simulate training&lt;/strong&gt; to learn how to focus on “cat”.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Perform the training loop&lt;/strong&gt; to adjust attention weights based on a dummy loss function.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;code-walkthrough&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#code-walkthrough&quot;&gt;Code Walkthrough&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;step-1%3A-initialize-word-embeddings&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://0v3r.com/posts/attention/#step-1%3A-initialize-word-embeddings&quot;&gt;Step 1: Initialize Word Embeddings&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We first define a small sentence and randomly initialize word embeddings for each word. Each word will be represented by a 3-dimensional vector.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs language-python&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# Sentence and embeddings initialization&lt;/span&gt;
+sentence = [&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;The&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;cat&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;sat&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;on&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;the&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;mat&amp;quot;&lt;/span&gt;]
+
+&lt;span class=&quot;hljs-comment&quot;&gt;# Randomly initialize word embeddings (simplified example, each word is represented by a 3D vector)&lt;/span&gt;
+word_embeddings = {
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;The&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.2&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.3&lt;/span&gt;]),
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;cat&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.4&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.6&lt;/span&gt;]),
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;sat&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.8&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.9&lt;/span&gt;]),
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;on&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.2&lt;/span&gt;]),
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;the&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.2&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.3&lt;/span&gt;]),
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;mat&amp;quot;&lt;/span&gt;: np.array([&lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.6&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.7&lt;/span&gt;])
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Vanilla Policy Gradient example</title>

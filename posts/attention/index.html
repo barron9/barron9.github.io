@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/a11y-code.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://11ty.dev/img/favicon.png">
+  <!-- add your favicons here -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png"> -->
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png"> -->
+  
+  <style>
+  	:root{--white:#fafafa;--black:#191919;--gray:#212121;--gray-2:#a6a6a6;--blue:#0070ff;--blue-2:#61dcff;--ff-sans-serif:Roboto,Helvetica,sans-serif;--ff-serif:Garamond,serif;--ff-code:monospace}*{box-sizing:border-box}body{--clr-background:var(--white);--clr-text:var(--black);--clr-text-secondary:var(--gray-2);--clr-link:var(--blue);--ff-current:var(--ff-sans-serif);background:var(--clr-background);color:var(--clr-text);font-family:var(--ff-current);padding:12px;line-height:1.5rem}body.dark{--clr-background:var(--black);--clr-text:var(--white);--clr-link:var(--blue-2)}.main-container{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 3fr 1fr;gap:3rem}main{min-height:86vh;padding-top:20px}.side-nav{text-align:end;line-height:2rem}.side-nav .site-title{all:unset}.side-nav .site-title:hover{all:unset;cursor:pointer}.side-nav a{all:unset;padding:8px;cursor:pointer}.side-nav a.active,.side-nav a:hover{background:var(--clr-text);color:var(--clr-background)}.side-nav ul{list-style:none}.side-nav ul li{margin:.5rem 0}.side-nav-inner{padding:20px;position:sticky;top:0}a{color:var(--clr-link)}.breadcrumbs{margin-bottom:1rem}article h1{font-size:2rem;line-height:2.5rem}article h1>a,article h2>a,article h3>a{color:var(--clr-text);text-decoration:none}article a:hover{color:var(--clr-link)}article img{max-width:100%}.thumbnail-container img{max-width:100%}.post-entries{padding:0;list-style:none}.post-entry{margin-bottom:4rem}.post-entry__title a{color:var(--clr-text)}.post-entry__title a:hover{color:var(--clr-link)}.post-entry__date{color:var(--clr-text-secondary)}.bibliography ul{padding:0;list-style:none}.bibliography li{padding-left:3rem;text-indent:-3rem;text-align:left;margin:1rem 0 .2rem 0}.main-footer{text-align:center;margin-top:4rem}.post-author{display:none}code{font-size:1.1em}pre{font-size:1em;overflow-x:auto;font-family:var(--ff-code);padding:12px;display:grid}pre code{overflow-x:auto}select{padding:2px;border:1px solid var(--clr-text);background-color:var(--clr-background);color:var(--clr-text);font-size:1em}button{padding:4px;border:1px solid var(--clr-text);color:var(--clr-text);background-color:transparent;cursor:pointer}.side-nav .controls{margin-top:2rem}@media (max-width:1200px){.main-container{grid-template-columns:1fr 3fr}}@media (max-width:720px){.main-container{grid-template-columns:1fr}}@media print{body.dark{--clr-background:#fff;--clr-text:#000;--clr-link:var(--blue)}.side-nav{display:none}.main-footer{display:none}.post-author{display:block}}
+  </style>
+  <meta property="og:title" content="Understanding Attention Mechanisms with a Simple Training Loop">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="In recent years, **Attention Mechanisms** have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like **GPT** and **BERT**. One key question is **how do attention weights get learned**? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word cat.">
+  <meta name="description" content="In recent years, **Attention Mechanisms** have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like **GPT** and **BERT**. One key question is **how do attention weights get learned**? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word cat.">
+  <meta name="theme-color" content="#0f0f11">
+  <title>Understanding Attention Mechanisms with a Simple Training Loop | 0v3r.com</title>
+</head>
+
+  <body>
+    <div class="main-container">
+      <aside class="side-nav">
+        <div class="side-nav-inner">
+          <a class="site-title" href="/">
+            0v3r.com
+          </a>
+          <nav>
+  <ul><li>
+        <a
+          class="nav-link
+            
+               active 
+            
+          "
+          href="/posts"
+        > /posts 
+    (4)
+  
+   </a>
+      </li><li>
+        <a
+          class="nav-link
+            
+              
+            
+          "
+          href="/feed.xml"
+        > /feed.xml 
+   </a>
+      </li></ul>
+</nav>
+
+          <div class="controls">
+            <details>
+              <summary>Controls</summary>
+              <div>
+  <label for="theme">Theme</label>
+  <select name="theme" id="theme">
+    <option value="system">system</option>
+    <option value="light">light</option>
+    <option value="dark">dark</option>
+  </select>
+</div>
+
+              <div>
+  <label for="font">Font</label>
+  <select name="font" id="font">
+    <option value="sansSerif">sans-serif</option>
+    <option value="serif">serif</option>
+  </select>
+</div>
+
+              <div>
+                <button onclick="print()">Print this page</button>
+              </div>
+            </details>
+          </div>
+        </div>
+      </aside>
+      <main>
+        
+
+
+<nav class="breadcrumbs">
+  
+    <span><a href="/posts/">Posts</a></span>
+    
+      &gt;
+    
+  
+    <span><a href="/posts/actor_critic_one_step_explanation/">ac_methods</a></span>
+    
+  
+</nav>
+
+
+        
+
+<article>
+    <h1>Understanding Attention Mechanisms with a Simple Training Loop</h1>
+    <div class="post-author">
+      by
+      <strong>
+        
+          chat.,
+        
+      </strong>
+    <span>Jan 3, 2025</span>
+    </div>
+    <h1 id="understanding-attention-mechanisms-with-a-simple-training-loop" tabindex="-1"><a class="header-anchor" href="#understanding-attention-mechanisms-with-a-simple-training-loop">Understanding Attention Mechanisms with a Simple Training Loop</a></h1>
+<p>In recent years, <strong>Attention Mechanisms</strong> have become a cornerstone of many state-of-the-art models in NLP (Natural Language Processing), especially with the advent of transformer architectures like <strong>GPT</strong> and <strong>BERT</strong>. One key question is <strong>how do attention weights get learned</strong>? In this blog post, we will explore this idea by implementing a simple training loop where the attention mechanism learns to focus on specific words in a sentence, with a particular emphasis on the word “cat.”</p>
+<h2 id="what-is-attention%3F" tabindex="-1"><a class="header-anchor" href="#what-is-attention%3F">What is Attention?</a></h2>
+<p>Before we dive into the code, let’s first understand what attention is and how it works in a simplified manner.</p>
+<p>At a high level, the <strong>attention mechanism</strong> allows the model to <strong>focus</strong> on different parts of an input sequence (e.g., a sentence) when making predictions. For instance, when translating a sentence, the model may need to “pay attention” to certain words more than others based on their relevance to the task at hand.</p>
+<p>In a typical transformer-based model, the mechanism computes attention weights between words using <strong>queries</strong> and <strong>keys</strong>. These weights determine how much each word contributes to the output. The model learns these weights during training to improve its performance on a given task.</p>
+<hr>
+<h2 id="objective" tabindex="-1"><a class="header-anchor" href="#objective">Objective</a></h2>
+<p>In this post, we will simulate a simplified attention mechanism where we train the model to focus on the word <strong>“cat”</strong> in the sentence <strong>“The cat sat on the mat.”</strong>. We will define a dummy training task where the model must learn to give higher attention weights to the word “cat” through a training loop.</p>
+<hr>
+<h2 id="steps-to-implement" tabindex="-1"><a class="header-anchor" href="#steps-to-implement">Steps to Implement</a></h2>
+<p>Here’s a summary of the steps we will follow:</p>
+<ol>
+<li><strong>Initialize word embeddings</strong> for a simple sentence, including the word “cat”.</li>
+<li><strong>Define a simple attention mechanism</strong>.</li>
+<li><strong>Simulate training</strong> to learn how to focus on “cat”.</li>
+<li><strong>Perform the training loop</strong> to adjust attention weights based on a dummy loss function.</li>
+</ol>
+<hr>
+<h2 id="code-walkthrough" tabindex="-1"><a class="header-anchor" href="#code-walkthrough">Code Walkthrough</a></h2>
+<h3 id="step-1%3A-initialize-word-embeddings" tabindex="-1"><a class="header-anchor" href="#step-1%3A-initialize-word-embeddings">Step 1: Initialize Word Embeddings</a></h3>
+<p>We first define a small sentence and randomly initialize word embeddings for each word. Each word will be represented by a 3-dimensional vector.</p>
+<pre><code class="hljs language-python"><span class="hljs-comment"># Sentence and embeddings initialization</span>
+sentence = [<span class="hljs-string">&quot;The&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span>, <span class="hljs-string">&quot;sat&quot;</span>, <span class="hljs-string">&quot;on&quot;</span>, <span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;mat&quot;</span>]
+
+<span class="hljs-comment"># Randomly initialize word embeddings (simplified example, each word is represented by a 3D vector)</span>
+word_embeddings = {
+    <span class="hljs-string">&quot;The&quot;</span>: np.array([<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>]),
+    <span class="hljs-string">&quot;cat&quot;</span>: np.array([<span class="hljs-number">0.4</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>]),
+    <span class="hljs-string">&quot;sat&quot;</span>: np.array([<span class="hljs-number">0.7</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.9</span>]),
+    <span class="hljs-string">&quot;on&quot;</span>: np.array([<span class="hljs-number">0.1</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.2</span>]),
+    <span class="hljs-string">&quot;the&quot;</span>: np.array([<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>]),
+    <span class="hljs-string">&quot;mat&quot;</span>: np.array([<span class="hljs-number">0.5</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">0.7</span>])
+}
+</code></pre>
+
+</article>
+
+      </main>
+    </div>
+    <footer class="main-footer">
+  &copy; b 2025
+</footer>
+
+  </body>
+  
+  <script>
+  function initThemeHandler(){const e=document.querySelector('select[id="theme"]'),t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light",o=localStorage.getItem("theme"),n=document.querySelector('meta[name="theme-color"]'),a=getComputedStyle(document.body);function r(e){"dark"===e?document.body.classList.add("dark"):document.body.classList.remove("dark");const t=a.getPropertyValue("--clr-background");n.setAttribute("content",t)}e.value=o||"system",r("dark"===o||"light"===o?o:t),e.addEventListener("change",(()=>{"system"===e.value?r(t):r(e.value),localStorage.setItem("theme",e.value)}))}function initFontHandler(){const e=getComputedStyle(document.body),t=e.getPropertyValue("--ff-sans-serif"),o=e.getPropertyValue("--ff-serif"),n=localStorage.getItem("font"),a=document.querySelector('select[id="font"]');function r(e){document.body.style.fontFamily="serif"===e?o:t}"serif"===n&&(r(n),a.value=n),a.addEventListener("change",(()=>{r(a.value),localStorage.setItem("font",a.value)}))}initThemeHandler(),initFontHandler();
+  </script>
+</html>
